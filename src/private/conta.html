@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - ToaruFlix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00A8E1;
+            --background-color: #040720;
+            --card-background: #1A1C32;
+            --text-color: #f0f0f5;
+            --text-color-secondary: #a1a1b2;
+            --danger-color: #e53e3e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .settings-container {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .settings-header {
+            border-bottom: 1px solid var(--card-background);
+            padding-bottom: 1rem;
+        }
+        .settings-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .settings-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .settings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .settings-row-label {
+            color: var(--text-color-secondary);
+        }
+        .settings-row-value {
+            font-weight: 500;
+        }
+        .btn {
+            background: none;
+            border: 1px solid var(--text-color-secondary);
+            color: var(--text-color-secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            border-color: var(--text-color);
+            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .btn-danger {
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+        .btn-danger:hover {
+            background-color: var(--danger-color);
+            color: #fff;
+        }
+        .btn-primary-outline {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-primary-outline:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-view" class="loading-overlay">
+        <p>Verificando autenticação...</p>
+    </div>
+
+    <div id="account-view" class="settings-container" style="display: none;">
+        <header class="settings-header">
+            <h1>Conta</h1>
+        </header>
+
+        <section class="settings-card">
+            <div class="settings-row">
+                <span class="settings-row-label">Email</span>
+                <span id="user-email" class="settings-row-value">carregando...</span>
+            </div>
+             <div class="settings-row">
+                <span class="settings-row-label">Senha</span>
+                <button id="change-password-btn" class="btn">Redefinir Senha</button>
+            </div>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-row">
+                <span class="settings-row-label">Encerrar Conta</span>
+                <button id="delete-account-btn" class="btn btn-danger">Encerrar Conta Permanentemente</button>
+            </div>
+        </section>
+        
+        <div class="settings-row">
+            <a id="back-to-dashboard" href="#" class="btn btn-primary-outline">Voltar para o Início</a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyATseyMtu7fbn-vvJQKDNVwQE0uMH36trc",
+            authDomain: "toarucrunchyrol-29ce4.firebaseapp.com",
+            projectId: "toarucrunchyrol-29ce4",
+            storageBucket: "toarucrunchyrol-29ce4.firebasestorage.app",
+            messagingSenderId: "338286357239",
+            appId: "1:338286357239:web:63747e65b6f8df534301f2",
+            measurementId: "G-BHE2WLLMDX"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        function runAccountPageLogic(user) {
+            const dom = {
+                loadingView: document.getElementById('loading-view'),
+                accountView: document.getElementById('account-view'),
+                userEmail: document.getElementById('user-email'),
+                changePasswordBtn: document.getElementById('change-password-btn'),
+                deleteAccountBtn: document.getElementById('delete-account-btn'),
+                backToDashboardBtn: document.getElementById('back-to-dashboard'),
+            };
+
+            // Preenche os dados e links
+            dom.userEmail.textContent = user.email;
+            dom.backToDashboardBtn.href = `dashboard.html?uid=${user.uid}`;
+
+            // Adiciona os eventos
+            dom.changePasswordBtn.addEventListener('click', () => {
+                if(confirm("Você receberá um email para redefinir sua senha. Deseja continuar?")) {
+                    firebase.auth().sendPasswordResetEmail(user.email)
+                        .then(() => {
+                            alert("Email de redefinição de senha enviado com sucesso! Verifique sua caixa de entrada.");
+                        })
+                        .catch(error => {
+                            console.error("Erro ao enviar email de redefinição:", error);
+                            alert(`Ocorreu um erro: ${error.message}`);
+                        });
+                }
+            });
+
+            dom.deleteAccountBtn.addEventListener('click', () => {
+                const confirmationText = "Tem certeza ABSOLUTA? Esta ação é irreversível e todos os seus dados serão perdidos. Digite seu email para confirmar.";
+                const userConfirmation = prompt(confirmationText);
+                
+                if (userConfirmation === user.email) {
+                    user.delete()
+                        .then(() => {
+                            alert("Sua conta foi encerrada com sucesso. Você será redirecionado.");
+                            window.location.href = '../../../index.html';
+                        })
+                        .catch(error => {
+                            console.error("Erro ao encerrar conta:", error);
+                            alert(`Ocorreu um erro: ${error.message}. OBS: Para executar esta ação, pode ser necessário fazer login recentemente.`);
+                        });
+                } else if (userConfirmation !== null) {
+                    alert("A confirmação falhou. A conta não foi encerrada.");
+                }
+            });
+
+            // Mostra a página
+            dom.loadingView.style.display = 'none';
+            dom.accountView.style.display = 'flex';
+        }
+
+        // Gatekeeper de autenticação
+        document.addEventListener('DOMContentLoaded', () => {
+            const auth = firebase.auth();
+            const params = new URLSearchParams(window.location.search);
+            const urlUid = params.get('uid');
+
+            if (!urlUid) {
+                window.location.href = '../../../index.html';
+                return;
+            }
+
+            auth.onAuthStateChanged(user => {
+                if (user && user.uid === urlUid) {
+                    runAccountPageLogic(user);
+                } else {
+                    window.location.href = '../../../index.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

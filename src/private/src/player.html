@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player ToaruFlix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CSS sem grandes alterações, apenas o hover da timeline foi simplificado */
+        :root {
+            --primary-color: #8B5CF6; /* Roxo Vibrante */
+            --background-color: #0c0c0f;
+            --controls-bg: rgba(20, 20, 25, 0.6);
+            --text-light: #f1f1f1;
+            --text-dark: #aaa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000; color: var(--text-light); font-family: 'Poppins', sans-serif; display: flex; height: 100vh; overflow: hidden; }
+        .player-wrapper { flex-grow: 1; display: flex; flex-direction: column; height: 100vh; position: relative; background-color: #000; overflow: hidden; }
+        video { width: 100%; height: 100%; object-fit: contain; cursor: pointer; }
+
+        .controls-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 21; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 25%), linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%); opacity: 1; transition: opacity 0.3s ease-in-out; }
+        .player-wrapper.inactive .controls-overlay { opacity: 0; cursor: none; }
+        .top-controls { padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+        .back-button { background: none; border: none; font-size: 1.5rem; color: #fff; cursor: pointer; text-decoration: none; }
+        .episode-main-title h3 { font-size: 1.2rem; font-weight: 500; }
+        .episode-main-title p { color: var(--text-dark); font-size: 0.9rem; }
+        .bottom-controls { padding: 1rem 2rem 1.5rem; }
+        
+        .timeline-container { position: relative; width: 100%; padding: 10px 0; cursor: pointer; }
+        .timeline-background { height: 4px; background-color: rgba(255,255,255,0.3); border-radius: 4px; }
+        .timeline-progress { height: 100%; background-color: var(--primary-color); width: 0%; border-radius: 4px; position: relative; }
+        .timeline-progress::after { content: ''; position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 14px; height: 14px; background-color: var(--primary-color); border-radius: 50%; box-shadow: 0 0 10px var(--primary-color); transition: transform 0.2s; transform-origin: center; opacity: 0; }
+        .timeline-container:hover .timeline-background { height: 6px; } /* Efeito de hover simplificado */
+        .timeline-container:hover .timeline-progress::after { opacity: 1; transform: translate(50%, -50%) scale(1.2); }
+
+        .main-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 5px; }
+        .controls-left, .controls-right { display: flex; align-items: center; gap: 1rem; }
+        .control-button { background: none; border: none; color: var(--text-light); font-size: 1.3rem; cursor: pointer; padding: 5px; }
+        .volume-container { display: flex; align-items: center; }
+        .volume-slider { width: 100px; -webkit-appearance: none; background: rgba(255,255,255,0.3); height: 4px; border-radius: 4px; }
+        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: var(--primary-color); border-radius: 50%; cursor: pointer; }
+
+        .playlist-sidebar { position: fixed; top: 0; right: 0; width: 380px; height: 100%; background-color: var(--background-color); z-index: 30; transform: translateX(100%); transition: transform 0.4s ease-in-out; display: flex; flex-direction: column; border-left: 1px solid #222; }
+        .playlist-sidebar.open { transform: translateX(0); }
+        .playlist-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; font-size: 1.2rem; font-weight: 600; border-bottom: 1px solid #222; }
+        .playlist-close-btn { background: none; border: none; font-size: 1.8rem; color: var(--text-dark); cursor: pointer; }
+        .playlist-episodes { overflow-y: auto; flex-grow: 1; }
+        .playlist-ep-card { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; border-bottom: 1px solid #222; }
+        .playlist-ep-card:hover { background-color: #252525; }
+        .playlist-ep-card.active { background-color: var(--primary-color); }
+        .playlist-ep-card .ep-number { font-size: 1.5rem; font-weight: 600; color: #888; text-align: center; min-width: 30px; }
+        .playlist-ep-card.active .ep-number { color: #fff; }
+        .playlist-ep-card .ep-title h4 { font-size: 1rem; font-weight: 500; }
+        .playlist-ep-card .ep-title p { font-size: 0.8rem; color: var(--text-dark); }
+    </style>
+</head>
+<body>
+    <div class="player-wrapper" id="player-wrapper">
+        <video id="video-player"></video>
+
+        <div class="controls-overlay">
+            <div class="top-controls">
+                <a href="../dashboard.html" id="back-button" class="back-button" title="Voltar"><i class="fa-solid fa-arrow-left"></i></a>
+                <div class="episode-main-title" id="episode-main-title"><h3>Carregando...</h3><p></p></div>
+            </div>
+            <div class="bottom-controls">
+                <div class="timeline-container" id="timeline-container">
+                    <div class="timeline-background"><div class="timeline-progress" id="timeline-progress"></div></div>
+                </div>
+                <div class="main-controls">
+                    <div class="controls-left">
+                        <button class="control-button" id="play-pause-btn" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+                        <button class="control-button" id="prev-ep-btn" title="Episódio Anterior"><i class="fa-solid fa-backward-step"></i></button>
+                        <button class="control-button" id="next-ep-btn" title="Próximo Episódio"><i class="fa-solid fa-forward-step"></i></button>
+                        <div class="volume-container">
+                            <button class="control-button" id="volume-btn" title="Mudo"><i class="fa-solid fa-volume-high"></i></button>
+                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                        </div>
+                    </div>
+                    <div class="controls-right">
+                        <button class="control-button" id="episodes-btn" title="Lista de Episódios"><i class="fa-solid fa-list-ol"></i></button>
+                        <button class="control-button" id="fullscreen-btn" title="Tela Cheia"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="playlist-sidebar" id="playlist-sidebar">
+        <div class="playlist-header">
+            <span id="playlist-title">Episódios</span>
+            <button class="playlist-close-btn" id="playlist-close-btn" title="Fechar">&times;</button>
+        </div>
+        <div class="playlist-episodes" id="playlist-container"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+    <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyATseyMtu7fbn-vvJQKDNVwQE0uMH36trc",
+      authDomain: "toarucrunchyrol-29ce4.firebaseapp.com",
+      projectId: "toarucrunchyrol-29ce4",
+      storageBucket: "toarucrunchyrol-29ce4.firebasestorage.app",
+      messagingSenderId: "338286357239",
+      appId: "1:338286357239:web:63747e65b6f8df534301f2",
+      measurementId: "G-BHE2WLLMDX"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    let currentUser = null;
+
+    function runPlayerLogic(user) {
+        currentUser = user;
+        // Objeto DOM simplificado, sem referências às thumbnails
+        const dom = {
+            playerWrapper: document.getElementById('player-wrapper'),
+            videoPlayer: document.getElementById('video-player'),
+            playPauseBtn: document.getElementById('play-pause-btn'),
+            progressBar: document.getElementById('timeline-progress'),
+            timelineContainer: document.getElementById('timeline-container'),
+            volumeBtn: document.getElementById('volume-btn'),
+            volumeSlider: document.getElementById('volume-slider'),
+            fullscreenBtn: document.getElementById('fullscreen-btn'),
+            prevBtn: document.getElementById('prev-ep-btn'),
+            nextBtn: document.getElementById('next-ep-btn'),
+            episodesBtn: document.getElementById('episodes-btn'),
+            playlistSidebar: document.getElementById('playlist-sidebar'),
+            playlistContainer: document.getElementById('playlist-container'),
+            playlistCloseBtn: document.getElementById('playlist-close-btn'),
+            mainTitle: document.getElementById('episode-main-title'),
+            backButton: document.getElementById('back-button'),
+        };
+
+        let currentSeriesEpisodes = [];
+        let currentEpisodeIndex = -1;
+        let inactivityTimer;
+        let seriesId;
+        let progressSaveInterval;
+
+        // Função para salvar progresso (permanece igual)
+        async function saveProgress() {
+            if (!seriesId || currentEpisodeIndex < 0 || !dom.videoPlayer.duration || isNaN(dom.videoPlayer.duration)) return;
+
+            const episode = currentSeriesEpisodes[currentEpisodeIndex];
+            const historyRef = db.collection('userWatchHistory').doc(currentUser.uid).collection('series').doc(seriesId);
+            
+            const dataToSave = {
+                currentEpisode: episode.episodio,
+                currentTime: dom.videoPlayer.currentTime,
+                duration: dom.videoPlayer.duration,
+                lastWatchedTimestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            await historyRef.set(dataToSave, { merge: true });
+        }
+
+        // Função para resumir do histórico (permanece igual)
+        async function resumeFromHistory() {
+             if (!seriesId) return;
+             const historyRef = db.collection('userWatchHistory').doc(currentUser.uid).collection('series').doc(seriesId);
+             const doc = await historyRef.get();
+             if (doc.exists) {
+                const data = doc.data();
+                const currentEpisode = currentSeriesEpisodes[currentEpisodeIndex];
+                if(data.currentEpisode === currentEpisode.episodio) {
+                    const startTime = data.currentTime >= data.duration - 2 ? 0 : data.currentTime;
+                    dom.videoPlayer.currentTime = startTime;
+                }
+             }
+        }
+        
+        // Controles básicos do player (permanecem iguais)
+        const togglePlay = () => dom.videoPlayer.paused ? dom.videoPlayer.play() : dom.videoPlayer.pause();
+        const updatePlayIcon = () => dom.playPauseBtn.innerHTML = `<i class="fa-solid fa-${dom.videoPlayer.paused ? 'play' : 'pause'}"></i>`;
+        const scrub = (e) => { const rect = dom.timelineContainer.getBoundingClientRect(); dom.videoPlayer.currentTime = ((e.clientX - rect.left) / rect.width) * dom.videoPlayer.duration; };
+        const toggleFullscreen = () => { if (document.fullscreenElement) document.exitFullscreen(); else dom.playerWrapper.requestFullscreen(); };
+        const handleInactivity = () => { clearTimeout(inactivityTimer); dom.playerWrapper.classList.remove('inactive'); if (!dom.videoPlayer.paused) inactivityTimer = setTimeout(() => dom.playerWrapper.classList.add('inactive'), 3000); };
+        function updateTime() {
+            if(isNaN(dom.videoPlayer.duration)) return;
+            dom.progressBar.style.width = `${(dom.videoPlayer.currentTime / dom.videoPlayer.duration) * 100}%`;
+        }
+
+        // Carrega o JSON da série (permanece igual, com o caminho corrigido)
+        async function loadSeriesData(id) {
+            const fileName = `${id}.json`;
+            try {
+                const response = await fetch(`../../../json/${fileName}`);
+                if (!response.ok) {
+                     throw new Error(`Não foi possível encontrar o arquivo ${fileName}. Status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error("Erro Crítico ao carregar dados da série:", error);
+                document.body.innerHTML = `<h1>Erro ao carregar dados. Verifique o console.</h1>`;
+                return null;
+            }
+        }
+
+        // Monta a playlist (permanece igual)
+        function buildPlaylist() {
+            dom.playlistContainer.innerHTML = currentSeriesEpisodes.map((ep, index) => `
+                <div class="playlist-ep-card" data-index="${index}">
+                    <span class="ep-number">${ep.episodio}</span>
+                    <div class="ep-title"><h4>${ep.titulo}</h4><p>${ep.descricao.substring(0, 80)}...</p></div>
+                </div>`).join('');
+            
+            document.querySelectorAll('.playlist-ep-card').forEach(card => card.addEventListener('click', (e) => playEpisode(parseInt(e.currentTarget.dataset.index, 10))));
+        }
+
+        // Função principal para tocar o episódio (simplificada)
+        async function playEpisode(index) {
+            if (index < 0 || index >= currentSeriesEpisodes.length) return;
+            await saveProgress();
+            currentEpisodeIndex = index;
+            const episode = currentSeriesEpisodes[index];
+            
+            if (!episode || !episode.link_video) {
+                alert("Erro: O link do vídeo para este episódio não foi encontrado no arquivo JSON.");
+                return;
+            }
+            
+            // Apenas o vídeo principal recebe o link agora
+            dom.videoPlayer.src = episode.link_video;
+            
+            await resumeFromHistory();
+            dom.videoPlayer.play().catch(e => {
+                console.error("Erro ao tentar tocar o vídeo:", e);
+                // Informa ao usuário que pode ser um problema com o link do vídeo
+                // alert("Não foi possível reproduzir o vídeo. O link pode estar quebrado ou o formato não é suportado.");
+            });
+            
+            dom.mainTitle.children[0].textContent = seriesConfig.anime;
+            dom.mainTitle.children[1].textContent = `Ep. ${episode.episodio}: ${episode.titulo}`;
+            
+            dom.prevBtn.disabled = index === 0;
+            dom.nextBtn.disabled = index === currentSeriesEpisodes.length - 1;
+
+            document.querySelectorAll('.playlist-ep-card.active').forEach(c => c.classList.remove('active'));
+            const activeCard = document.querySelector(`.playlist-ep-card[data-index="${index}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+                activeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        let seriesConfig = {};
+        async function initialize() {
+            const urlParams = new URLSearchParams(window.location.search);
+            seriesId = urlParams.get('seriesId');
+            const startEp = parseInt(urlParams.get('ep'), 10) || 1;
+
+            if (!seriesId) {
+                document.body.innerHTML = '<h1>ID da série não fornecido na URL.</h1>';
+                return;
+            }
+            
+            dom.backButton.href = `../dashboard.html?uid=${currentUser.uid}`;
+            seriesConfig = await loadSeriesData(seriesId);
+            if (!seriesConfig) return;
+
+            currentSeriesEpisodes = seriesConfig.episodios;
+            document.getElementById('playlist-title').textContent = seriesConfig.anime;
+            buildPlaylist();
+
+            const startIndex = currentSeriesEpisodes.findIndex(ep => ep.episodio === startEp);
+            playEpisode(startIndex !== -1 ? startIndex : 0);
+
+            // Event Listeners (simplificados)
+            dom.playPauseBtn.onclick = togglePlay; 
+            dom.videoPlayer.onclick = togglePlay;
+            dom.videoPlayer.onplay = () => { 
+                updatePlayIcon(); 
+                if (!progressSaveInterval) progressSaveInterval = setInterval(saveProgress, 10000); // Salva a cada 10s
+            };
+            dom.videoPlayer.onpause = () => { 
+                updatePlayIcon(); 
+                clearInterval(progressSaveInterval); 
+                progressSaveInterval = null; 
+                saveProgress(); // Salva ao pausar
+            };
+            dom.videoPlayer.ontimeupdate = updateTime;
+            // O listener para 'mousemove' na timeline foi removido
+            dom.timelineContainer.addEventListener('click', scrub);
+            dom.fullscreenBtn.onclick = toggleFullscreen; 
+            dom.playerWrapper.ondblclick = toggleFullscreen;
+            dom.episodesBtn.onclick = () => dom.playlistSidebar.classList.toggle('open');
+            dom.playlistCloseBtn.onclick = () => dom.playlistSidebar.classList.remove('open');
+            dom.prevBtn.onclick = () => playEpisode(currentEpisodeIndex - 1);
+            dom.nextBtn.onclick = () => playEpisode(currentEpisodeIndex + 1);
+            dom.videoPlayer.onended = () => { 
+                saveProgress(); 
+                if (currentEpisodeIndex < currentSeriesEpisodes.length - 1) playEpisode(currentEpisodeIndex + 1); 
+            };
+            dom.playerWrapper.onmousemove = handleInactivity; 
+            handleInactivity();
+            window.addEventListener('beforeunload', saveProgress); // Salva ao fechar a aba
+        }
+        
+        initialize();
+    }
+
+    // Gatekeeper de autenticação (permanece igual)
+    document.addEventListener('DOMContentLoaded', () => {
+        const auth = firebase.auth();
+        const params = new URLSearchParams(window.location.search);
+        const urlUid = params.get('uid');
+
+        if (!urlUid) {
+            window.location.href = '../../../login.html';
+            return;
+        }
+
+        auth.onAuthStateChanged(user => {
+            if (user && user.uid === urlUid) {
+                runPlayerLogic(user);
+            } else {
+                window.location.href = '../../../login.html';
+            }
+        });
+    });
+    </script>
+</body>
+</html>
