@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Perfis - ToaruFlix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00A8E1;
+            --background-gradient: linear-gradient(to bottom right, #040720, #090B26);
+            --card-background: #1A1C32;
+            --text-color: #f0f0f5;
+            --text-color-secondary: #a1a1b2;
+            --danger-color: #e10035;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--background-gradient);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .profiles-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+        }
+        .profile-card, .add-profile-card {
+            text-align: center;
+            position: relative;
+        }
+        .profile-icon-bg {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            border: 4px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background-color: var(--card-background);
+        }
+        .profile-icon-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-card:hover .profile-icon-bg {
+            border-color: var(--text-color);
+            transform: scale(1.05);
+        }
+        .profile-name {
+            margin-top: 1rem;
+            color: var(--text-color-secondary);
+            font-size: 1.2rem;
+        }
+        .edit-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .profile-card:hover .edit-overlay {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .overlay-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1A1C32;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .overlay-btn:hover {
+            transform: scale(1.1);
+        }
+        .overlay-btn.delete:hover {
+            background-color: var(--danger-color);
+            color: #fff;
+        }
+        .add-profile-card .profile-icon-bg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .add-profile-card i {
+            font-size: 4rem;
+            color: var(--primary-color);
+        }
+        .done-button {
+            margin-top: 4rem;
+            padding: 0.8rem 3rem;
+            background: transparent;
+            color: var(--text-color-secondary);
+            border: 1px solid var(--text-color-secondary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .done-button:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .modal-content h2 {
+            margin-bottom: 1.5rem;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid var(--text-color-secondary);
+            background: #090B26;
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .modal-actions button {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 0.5rem;
+        }
+        .btn-save {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        .btn-cancel {
+            background-color: var(--text-color-secondary);
+            color: #040720;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gerenciar Perfis</h1>
+    <div id="profiles-grid" class="profiles-grid">
+        </div>
+    <a id="done-button" href="#" class="done-button">Concluído</a>
+
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Editar Perfil</h2>
+            <input type="text" id="profile-name-input" placeholder="Nome do Perfil" required>
+            <input type="url" id="profile-image-input" placeholder="URL da Imagem do Perfil" required>
+            <div class="modal-actions">
+                <button id="cancel-button" class="btn-cancel">Cancelar</button>
+                <button id="save-button" class="btn-save">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+    <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyATseyMtu7fbn-vvJQKDNVwQE0uMH36trc",
+        authDomain: "toarucrunchyrol-29ce4.firebaseapp.com",
+        projectId: "toarucrunchyrol-29ce4",
+        storageBucket: "toarucrunchyrol-29ce4.firebasestorage.app",
+        messagingSenderId: "338286357239",
+        appId: "1:338286357239:web:63747e65b6f8df534301f2",
+        measurementId: "G-BHE2WLLMDX"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    // --- VARIÁVEIS GLOBAIS ---
+    let currentUser = null;
+    let currentProfileId = null; // Guarda o ID do perfil que está sendo editado
+    
+    // --- ELEMENTOS DO DOM ---
+    const profilesGrid = document.getElementById('profiles-grid');
+    const doneButton = document.getElementById('done-button');
+    const modal = document.getElementById('profile-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const nameInput = document.getElementById('profile-name-input');
+    const imageInput = document.getElementById('profile-image-input');
+    const saveButton = document.getElementById('save-button');
+    const cancelButton = document.getElementById('cancel-button');
+
+    // --- LÓGICA DA PÁGINA ---
+    
+    async function fetchAndRenderProfiles() {
+        if (!currentUser) return;
+        
+        try {
+            const profilesRef = db.collection('users').doc(currentUser.uid).collection('profiles');
+            const snapshot = await profilesRef.orderBy('createdAt', 'asc').get();
+
+            profilesGrid.innerHTML = ''; // Limpa a grade atual
+            
+            snapshot.forEach(doc => {
+                const profile = { id: doc.id, ...doc.data() };
+                const profileCard = createProfileCard(profile);
+                profilesGrid.innerHTML += profileCard;
+            });
+            
+            if (snapshot.size < 5) {
+                profilesGrid.innerHTML += `
+                    <div class="add-profile-card" id="add-profile-button">
+                        <div class="profile-icon-bg">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <p class="profile-name">Adicionar Perfil</p>
+                    </div>
+                `;
+            }
+
+        } catch (error) {
+            console.error("Erro ao buscar perfis:", error);
+            // Este alerta agora só deve aparecer se houver um erro de rede, não de permissão.
+            alert("Não foi possível carregar os perfis. Verifique sua conexão ou tente novamente.");
+        }
+    }
+
+    function createProfileCard(profile) {
+        return `
+            <div class="profile-card">
+                <div class="profile-icon-bg">
+                    <img src="${profile.imageUrl}" alt="${profile.name}">
+                    <div class="edit-overlay">
+                        <button class="overlay-btn edit" data-id="${profile.id}" data-name="${profile.name}" data-image="${profile.imageUrl}">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                        <button class="overlay-btn delete" data-id="${profile.id}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="profile-name">${profile.name}</p>
+            </div>
+        `;
+    }
+
+    // --- FUNÇÕES DO MODAL ---
+    
+    function showModal(mode, profile = {}) {
+        currentProfileId = mode === 'edit' ? profile.id : null;
+        modalTitle.textContent = mode === 'edit' ? 'Alterar Foto do Perfil' : 'Adicionar Perfil';
+        nameInput.value = profile.name || '';
+        imageInput.value = profile.imageUrl || '';
+        // Em modo de edição, esconde o campo de nome e mostra em modo de adição
+        nameInput.style.display = mode === 'edit' ? 'none' : 'block';
+        modal.style.display = 'flex';
+    }
+
+    function hideModal() {
+        modal.style.display = 'none';
+    }
+
+    // --- AÇÕES CRUD ---
+
+    async function handleSave() {
+        const name = nameInput.value.trim();
+        const imageUrl = imageInput.value.trim();
+
+        if (!imageUrl) {
+            alert("Por favor, insira uma URL para a imagem.");
+            return;
+        }
+
+        if (currentProfileId) { // Editando
+             try {
+                const profileRef = db.collection('users').doc(currentUser.uid).collection('profiles').doc(currentProfileId);
+                await profileRef.update({ imageUrl: imageUrl });
+                alert("Foto do perfil atualizada com sucesso!");
+             } catch (error) {
+                console.error("Erro ao atualizar perfil:", error);
+                alert("Falha ao atualizar o perfil.");
+             }
+        } 
+        else { // Adicionando
+            if (!name) {
+                alert("Por favor, insira um nome para o novo perfil.");
+                return;
+            }
+            try {
+                const profilesRef = db.collection('users').doc(currentUser.uid).collection('profiles');
+                await profilesRef.add({
+                    name: name,
+                    imageUrl: imageUrl,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert("Perfil adicionado com sucesso!");
+            } catch (error) {
+                console.error("Erro ao adicionar perfil:", error);
+                alert("Falha ao adicionar o perfil.");
+            }
+        }
+        hideModal();
+        fetchAndRenderProfiles();
+    }
+
+    async function handleDelete(profileId) {
+        // Não permitir apagar o último perfil
+        if (profilesGrid.querySelectorAll('.profile-card').length <= 1) {
+            alert("Você não pode apagar seu único perfil.");
+            return;
+        }
+        
+        if (!confirm("Tem certeza que deseja apagar este perfil? Esta ação não pode ser desfeita.")) {
+            return;
+        }
+
+        try {
+            const profileRef = db.collection('users').doc(currentUser.uid).collection('profiles').doc(profileId);
+            await profileRef.delete();
+            alert("Perfil apagado com sucesso.");
+            fetchAndRenderProfiles();
+        } catch (error) {
+            console.error("Erro ao apagar perfil:", error);
+            alert("Falha ao apagar o perfil.");
+        }
+    }
+
+
+    // --- GATEKEEPER E EVENT LISTENERS ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const uid = params.get('uid');
+
+        if (!uid) {
+            alert("Acesso negado. Faça o login novamente.");
+            window.location.href = '../../index.html';
+            return;
+        }
+        
+        doneButton.href = `../home.html?uid=${uid}`;
+
+        auth.onAuthStateChanged(user => {
+            if (user && user.uid === uid) {
+                currentUser = user;
+                fetchAndRenderProfiles();
+            } else {
+                auth.signOut();
+                alert("Sessão inválida. Faça o login novamente.");
+                window.location.href = '../../index.html';
+            }
+        });
+
+        profilesGrid.addEventListener('click', (e) => {
+            const editButton = e.target.closest('.edit');
+            const deleteButton = e.target.closest('.delete');
+            const addButton = e.target.closest('#add-profile-button');
+
+            if (editButton) {
+                showModal('edit', {
+                    id: editButton.dataset.id,
+                    name: editButton.dataset.name,
+                    imageUrl: editButton.dataset.image
+                });
+            } else if (deleteButton) {
+                handleDelete(deleteButton.dataset.id);
+            } else if (addButton) {
+                showModal('add');
+            }
+        });
+
+        saveButton.addEventListener('click', handleSave);
+        cancelButton.addEventListener('click', hideModal);
+    });
+    </script>
+</body>
+</html>

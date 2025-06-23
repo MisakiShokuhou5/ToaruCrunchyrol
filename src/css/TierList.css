@@ -1,0 +1,227 @@
+body {
+    height: 1800px;
+}
+
+.tierlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.left-buttons button {
+    padding: 10px 24px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.left-buttons button.active,
+.left-buttons button:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+#arc-info-btn {
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.spoiler-toggle {
+    margin-left: 20px;
+    font-size: 14px;
+    color: var(--text-color);
+    user-select: none;
+}
+
+#arc-manager {
+    background-color: #1a1c32;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.arc-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.arc-column h4 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.arc-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.arc-column li {
+    background: #232547;
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.tier-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tier-label {
+    width: 120px;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    padding-left: 12px;
+    user-select: none;
+}
+
+.tier-dropzone {
+    flex: 1;
+    min-height: 80px;
+    background: #1a1c32;
+    border: 2px dashed #555;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+    gap: 6px;
+}
+
+/* Cores específicas */
+.tier-s        { background-color: #ff4d4d; }
+.tier-a        { background-color: #ff944d; }
+.tier-b        { background-color: #ffc266; }
+.tier-c        { background-color: #ffff66; color: black; }
+.tier-d        { background-color: #99ff99; color: black; }
+.tier-e        { background-color: #339966; }
+.tier-mystery { background-color: #b3b3b3; color: black; }
+
+.character-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+.character {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 4px;
+    /* display: inline-block !important; -- removido, o JS controla isso */
+}
+
+/* Garante que o pool da motelist seja flex para os personagens */
+/* #motelist-container #character-pool { display: flex !important; flex-wrap: wrap; } - Removido */
+/* A regra character-pool já define display: flex; e flex-wrap: wrap; */
+
+.grade-category {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.grau-especial { background-color: #e74c3c; color: white; }
+.grau-1 { background-color: #e67e22; color: white; }
+.grau-2 { background-color: #f39c12; color: white; }
+.grau-3 { background-color: #f1c40f; color: black; }
+.grau-4 { background-color: #2ecc71; color: white; }
+.grau-5 { background-color: #27ae60; color: white; }
+
+/* Styles for drag & drop zones (Tier & Grade) */
+.tier-dropzone {
+    min-height: 80px;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Controla qual container está ativo */
+#tierlist-container,
+#motelist-container {
+    display: none;
+}
+
+#tierlist-container.active,
+#motelist-container.active {
+    display: block;
+}
+
+/* Estilo para os filtros de gênero */
+#gender-filters {
+    display: none; /* Inicia escondido, só aparece na motelist */
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px; 
+    margin-bottom: 16px;
+}
+
+.btn-gender {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    font-size: 28px; /* Ajustado para um tamanho bom */
+    user-select: none;
+    background-color: transparent;
+    color: inherit;
+    outline-offset: 2px;
+}
+
+.btn-male {
+    background-color: #1e40af; /* azul */
+    color: white;
+    border: 2px solid transparent;
+}
+
+.btn-female {
+    background-color: #db2777; /* rosa */
+    color: white;
+    border: 2px solid transparent;
+}
+
+/* Hover e ativo inverte as cores e adiciona borda */
+.btn-male:hover,
+.btn-male.active { 
+    background-color: white;
+    color: #1e40af;
+    border-color: #1e40af;
+}
+
+.btn-female:hover,
+.btn-female.active {
+    background-color: white;
+    color: #db2777;
+    border-color: #db2777;
+}

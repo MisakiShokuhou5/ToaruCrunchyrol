@@ -1,0 +1,232 @@
+/* ---- RESET E CONFIGURAÇÕES GLOBAIS ---- */
+:root {
+    --primary-color: blueviolet;
+    --background-color: #141414; /* Um preto um pouco mais suave */
+    --surface-color: #1f1f1f;
+    --text-color: #f5f5f5;
+    --accent-color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---- CABEÇALHO ---- */
+.main-header {
+    background-color: var(--surface-color);
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #333;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+}
+
+.logo {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+.search-container input {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    color: var(--text-color);
+    font-size: 14px;
+    outline: none;
+}
+
+.search-container button {
+    background: none;
+    border: none;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary-color);
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: var(--surface-color);
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    width: 160px;
+    overflow: hidden;
+}
+
+.profile-dropdown.show {
+    display: block; /* Mostra o menu quando a classe .show é adicionada */
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.profile-dropdown a:hover {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+
+/* ---- CONTEÚDO PRINCIPAL ---- */
+.dashboard-main {
+    padding: 30px 5%;
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section h2 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+/* ---- CARROSSEL E GRID DE ANIMES ---- */
+.anime-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 20px; /* Espaço para a barra de rolagem não cortar a sombra */
+}
+
+/* Estilizando a barra de rolagem (funciona em navegadores WebKit/Blink) */
+.anime-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+.anime-carousel::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+.anime-carousel::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 4px;
+}
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.anime-card {
+    background-color: var(--surface-color);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.anime-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+.card-image {
+    width: 100%;
+    padding-top: 140%; /* Proporção de imagem (altura/largura) */
+    background-color: #333; /* Placeholder para a imagem */
+    background-size: cover;
+    background-position: center;
+}
+
+.card-title {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-color);
+}
+
+
+/* ---- RESPONSIVIDADE ---- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .search-container {
+        order: 3; /* Muda a ordem dos elementos */
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .search-container input {
+        width: 80%;
+    }
+
+    .profile-container {
+        order: 2;
+        position: absolute;
+        top: 10px;
+        right: 5%;
+    }
+
+    .dashboard-main {
+        padding: 20px 5%;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}

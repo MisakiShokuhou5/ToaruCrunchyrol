@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ToaruCrunchyrol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./src/css/reset.css">
+  <link rel="stylesheet" href="./src/css/login.css">
+</head>
+
+<body>
+  <main>
+    <section class="imagem">
+      <picture>
+        <img src="./src/img/img-login/imagem-em-hd-AI.jpg" alt="imagem do toatu com AI">
+      </picture>
+    </section>
+
+    <section class="conteudo-login">
+      <label for="user">Usuário / E-mail</label>
+      <input type="text" id="user" placeholder="Digite o seu Usuário ou E-mail">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="Digite a sua Senha">
+
+      <button id="authButton">Entrar</button>
+      <a href="#" id="toggleAuthMode" title="Alterar modo de autenticação">Criar uma conta?</a>
+    </section>
+  </main>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+  <!-- Firebase Config -->
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyATseyMtu7fbn-vvJQKDNVwQE0uMH36trc",
+      authDomain: "toarucrunchyrol-29ce4.firebaseapp.com",
+      projectId: "toarucrunchyrol-29ce4",
+      storageBucket: "toarucrunchyrol-29ce4.appspot.com",
+      messagingSenderId: "338286357239",
+      appId: "1:338286357239:web:63747e65b6f8df534301f2",
+      measurementId: "G-BHE2WLLMDX"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- Login/Register Script -->
+  <script>
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  let isLogin = true;
+
+  function registerUser() {
+    const email = document.getElementById("user").value;
+    const password = document.getElementById("senha").value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+
+        db.collection("usuarios").doc(user.uid).set({
+          email: user.email,
+          criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        // Redireciona após registro
+        window.location.href = `/src/private/dashboard.html?uid=${user.uid}`;
+      })
+      .catch(error => {
+        alert("Erro ao criar conta: " + error.message);
+      });
+  }
+
+  function loginUser() {
+    const email = document.getElementById("user").value;
+    const password = document.getElementById("senha").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+
+        // Redireciona após login
+        window.location.href = `/src/private/dashboard.html?uid=${user.uid}`;
+      })
+      .catch(error => {
+        alert("Erro ao fazer login: " + error.message);
+      });
+  }
+
+  document.getElementById("authButton").addEventListener("click", function () {
+    isLogin ? loginUser() : registerUser();
+  });
+
+  document.getElementById("toggleAuthMode").addEventListener("click", function (event) {
+    event.preventDefault();
+    isLogin = !isLogin;
+    document.getElementById("authButton").textContent = isLogin ? "Entrar" : "Registrar";
+    this.textContent = isLogin ? "Criar uma conta?" : "Já tem uma conta? Entrar";
+  });
+</script>
+
+</body>
+
+</html>
