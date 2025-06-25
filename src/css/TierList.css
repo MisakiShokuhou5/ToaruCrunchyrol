@@ -1,5 +1,5 @@
 body {
-    height: 1800px;
+    min-height: 100vh;
 }
 
 .tierlist-header {
@@ -35,7 +35,6 @@ body {
     padding: 6px 12px;
     border-radius: 50%;
     cursor: pointer;
-    display: inline-block;
     text-align: center;
 }
 
@@ -86,37 +85,68 @@ body {
     margin-bottom: 10px;
     border-radius: 8px;
     overflow: hidden;
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: wrap;
+    position: relative;
 }
 
 .tier-label {
     width: 120px;
-    text-align: left;
     font-weight: bold;
     color: white;
     padding-left: 12px;
     user-select: none;
+    background-color: transparent;
 }
 
 .tier-dropzone {
     flex: 1;
     min-height: 80px;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
     background: #1a1c32;
-    border: 2px dashed #555;
     display: flex;
     flex-wrap: wrap;
-    padding: 8px;
     gap: 6px;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
-/* Cores específicas */
-.tier-s        { background-color: #ff4d4d; }
-.tier-a        { background-color: #ff944d; }
-.tier-b        { background-color: #ffc266; }
-.tier-c        { background-color: #ffff66; color: black; }
-.tier-d        { background-color: #99ff99; color: black; }
-.tier-e        { background-color: #339966; }
-.tier-mystery { background-color: #b3b3b3; color: black; }
+/* Tiers (Tier List) */
+.tier-s {
+    background-color: #ff4d4d;
+}
 
+.tier-a {
+    background-color: #ff944d;
+}
+
+.tier-b {
+    background-color: #ffc266;
+}
+
+.tier-c {
+    background-color: #ffff66;
+    color: black;
+}
+
+.tier-d {
+    background-color: #99ff99;
+    color: black;
+}
+
+.tier-e {
+    background-color: #339966;
+}
+
+.tier-mystery {
+    background-color: #cccccc;
+    color: black;
+}
+
+/* Personagens */
 .character-pool {
     display: flex;
     flex-wrap: wrap;
@@ -131,55 +161,50 @@ body {
     object-fit: cover;
     border-radius: 6px;
     margin: 4px;
-    /* display: inline-block !important; -- removido, o JS controla isso */
+    cursor: grab;
 }
 
-/* Garante que o pool da motelist seja flex para os personagens */
-/* #motelist-container #character-pool { display: flex !important; flex-wrap: wrap; } - Removido */
-/* A regra character-pool já define display: flex; e flex-wrap: wrap; */
-
-.grade-category {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 8px;
+.character.dragging {
+    opacity: 0.5;
 }
 
-.grau-especial { background-color: #e74c3c; color: white; }
-.grau-1 { background-color: #e67e22; color: white; }
-.grau-2 { background-color: #f39c12; color: white; }
-.grau-3 { background-color: #f1c40f; color: black; }
-.grau-4 { background-color: #2ecc71; color: white; }
-.grau-5 { background-color: #27ae60; color: white; }
-
-/* Styles for drag & drop zones (Tier & Grade) */
-.tier-dropzone {
-    min-height: 80px;
-    padding: 10px;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+/* Motelist Grades */
+.grau-especial {
+    background-color: #e74c3c;
+    color: white;
 }
 
-/* Controla qual container está ativo */
-#tierlist-container,
-#motelist-container {
-    display: none;
+.grau-1 {
+    background-color: #e67e22;
+    color: white;
 }
 
-#tierlist-container.active,
-#motelist-container.active {
-    display: block;
+.grau-2 {
+    background-color: #f39c12;
+    color: white;
 }
 
-/* Estilo para os filtros de gênero */
+.grau-3 {
+    background-color: #f1c40f;
+    color: black;
+}
+
+.grau-4 {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.grau-5 {
+    background-color: #27ae60;
+    color: white;
+}
+
+/* Filtros de Gênero */
 #gender-filters {
-    display: none; /* Inicia escondido, só aparece na motelist */
+    display: none;
     gap: 12px;
     justify-content: center;
-    margin-top: 20px; 
-    margin-bottom: 16px;
+    margin: 20px 0 16px 0;
 }
 
 .btn-gender {
@@ -191,29 +216,28 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-    font-size: 28px; /* Ajustado para um tamanho bom */
+    font-size: 28px;
     user-select: none;
     background-color: transparent;
     color: inherit;
     outline-offset: 2px;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .btn-male {
-    background-color: #1e40af; /* azul */
+    background-color: #1e40af;
     color: white;
     border: 2px solid transparent;
 }
 
 .btn-female {
-    background-color: #db2777; /* rosa */
+    background-color: #db2777;
     color: white;
     border: 2px solid transparent;
 }
 
-/* Hover e ativo inverte as cores e adiciona borda */
 .btn-male:hover,
-.btn-male.active { 
+.btn-male.active {
     background-color: white;
     color: #1e40af;
     border-color: #1e40af;
@@ -224,4 +248,143 @@ body {
     background-color: white;
     color: #db2777;
     border-color: #db2777;
+}
+
+/* Botão engrenagem */
+.gear-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.gear-btn:hover {
+    background-color: #222;
+}
+
+/* Popup */
+#tier-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#tier-popup {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 300px;
+    max-width: 500px;
+    color: white;
+    position: relative;
+}
+
+#tier-popup-content {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    max-width: 90vw;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    color: #eee;
+}
+
+#tier-popup-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #eee;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Controles internos de tiers */
+.tier-controls {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    align-items: center;
+    color: #eee;
+    font-size: 14px;
+}
+
+.tier-controls label {
+    justify-self: end;
+}
+
+.tier-controls input[type="color"],
+.tier-controls input[type="text"] {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: none;
+    background: #333;
+    color: #eee;
+    font-size: 14px;
+}
+
+.tier-controls button {
+    grid-column: 1 / span 2;
+    background-color: #333;
+    color: #eee;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.tier-controls button:hover {
+    background-color: #555;
+}
+
+/* Botão salvar imagem */
+#save-image-btn {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#save-image-btn:hover {
+    background-color: #005fa3;
+}
+
+/* Exibição condicional de container */
+#tierlist-container,
+#motelist-container {
+    display: none;
+}
+
+#tierlist-container.active,
+#motelist-container.active {
+    display: block;
 }

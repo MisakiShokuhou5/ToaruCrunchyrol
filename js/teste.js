@@ -1,5 +1,3 @@
-// js/TierList.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const arcList = window.arcList || [];
     const personagens = window.personagens || [];
@@ -25,6 +23,74 @@ document.addEventListener('DOMContentLoaded', () => {
     let filterFemale = false;
     let currentPool = poolTier;
 
+    function saveState() {
+        const tierOrder = [...poolTier.querySelectorAll('.character')].map(img => img.id);
+        const moteOrder = [...poolMote.querySelectorAll('.character')].map(img => img.id);
+        const arcsSeen = [...seenList.children].map(li => li.dataset.arc);
+        const arcsIncomplete = [...incompleteList.children].map(li => li.dataset.arc);
+        const arcsUnseen = [...unseenList.children].map(li => li.dataset.arc);
+
+        const saveData = {
+            tierOrder,
+            moteOrder,
+            arcsSeen,
+            arcsIncomplete,
+            arcsUnseen,
+            filterMale,
+            filterFemale,
+            currentPoolId: currentPool.id,
+            showSpoilers: showSpoilersCheckbox.checked
+        };
+
+        localStorage.setItem('tierMoteState', JSON.stringify(saveData));
+    }
+
+    function loadState() {
+        const saved = localStorage.getItem('tierMoteState');
+        if (!saved) return;
+
+        const { tierOrder, moteOrder, arcsSeen, arcsIncomplete, arcsUnseen, filterMale: fMale, filterFemale: fFemale, currentPoolId, showSpoilers } = JSON.parse(saved);
+
+        tierOrder.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) poolTier.appendChild(el);
+        });
+
+        moteOrder.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) poolMote.appendChild(el);
+        });
+
+        arcsSeen.forEach(arc => {
+            const li = [...seenList.children].find(li => li.dataset.arc === arc);
+            if (li) seenList.appendChild(li);
+        });
+
+        arcsIncomplete.forEach(arc => {
+            const li = [...incompleteList.children].find(li => li.dataset.arc === arc);
+            if (li) incompleteList.appendChild(li);
+        });
+
+        arcsUnseen.forEach(arc => {
+            const li = [...unseenList.children].find(li => li.dataset.arc === arc);
+            if (li) unseenList.appendChild(li);
+        });
+
+        filterMale = fMale;
+        filterFemale = fFemale;
+        btnMale.classList.toggle('active', filterMale);
+        btnFemale.classList.toggle('active', filterFemale);
+        showSpoilersCheckbox.checked = !!showSpoilers;
+
+        if (currentPoolId === 'character-pool-mote') {
+            currentPool = poolMote;
+            showMoteList();
+        } else {
+            currentPool = poolTier;
+            showTierList();
+        }
+    }
+
     function showTierList() {
         tierListContainer.classList.add('active');
         moteListContainer.classList.remove('active');
@@ -33,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('gender-filters').style.display = 'none';
         currentPool = poolTier;
         updateCharacterDisplay();
+        saveState();
     }
 
     function showMoteList() {
@@ -44,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPool = poolMote;
         updateGenderFilter();
         updateCharacterDisplay();
+        saveState();
     }
 
     arcList.forEach(arc => {
@@ -54,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         li.style.cursor = 'pointer';
         li.addEventListener('click', () => {
             moveArc.call(li);
+            saveState();
         });
         unseenList.appendChild(li);
     });
@@ -72,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         reorderArcLists();
         updateCharacterDisplay();
+        saveState();
     }
 
     function reorderArcLists() {
@@ -106,12 +176,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 char.style.display = shouldShow ? 'inline-block' : 'none';
             });
         });
+
+        saveState();
     }
 
     function updateGenderFilter() {
         filterMale = btnMale.classList.contains('active');
         filterFemale = btnFemale.classList.contains('active');
         updateCharacterDisplay();
+        saveState();
     }
 
     btnTierList.addEventListener('click', showTierList);
@@ -123,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showSpoilersCheckbox.addEventListener('change', () => {
         updateCharacterDisplay();
+        saveState();
     });
 
     btnMale.addEventListener('click', () => {
@@ -152,15 +226,28 @@ document.addEventListener('DOMContentLoaded', () => {
             img.dataset.genero = genero;
             img.title = nome;
 
+            img.addEventListener('dragstart', e => {
+                e.dataTransfer.setData('text/plain', img.id);
+                img.classList.add('dragging');
+            });
+
+            img.addEventListener('dragend', () => {
+                img.classList.remove('dragging');
+            });
+
             (type === 'tier' ? poolTier : poolMote).appendChild(img);
         });
     });
 
-    function getDragAfterElement(container, x) {
+    function getDragAfterElement(container, axis, pos) {
         const draggables = [...container.querySelectorAll('.character:not(.dragging)')];
+
         return draggables.reduce((closest, child) => {
             const box = child.getBoundingClientRect();
-            const offset = x - (box.left + box.width / 2);
+            const offset = axis === 'x'
+                ? pos - (box.left + box.width / 2)
+                : pos - (box.top + box.height / 2);
+
             if (offset < 0 && offset > closest.offset) {
                 return { offset: offset, element: child };
             } else {
@@ -169,40 +256,82 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
     }
 
-    function enableDragAndDrop() {
-        document.querySelectorAll('.character').forEach(img => {
-            img.addEventListener('dragstart', e => {
-                e.dataTransfer.setData('text/plain', img.id);
-                img.classList.add('dragging');
-            });
-            img.addEventListener('dragend', () => {
-                img.classList.remove('dragging');
-            });
+    function enableDropzone(zone) {
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
         });
 
-        document.querySelectorAll('.tier-dropzone, .character-pool-tier, .character-pool-mote').forEach(zone => {
-            zone.addEventListener('dragover', e => {
-                e.preventDefault();
-            });
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
 
-            zone.addEventListener('drop', e => {
-                e.preventDefault();
-                const id = e.dataTransfer.getData('text/plain');
-                const dragged = document.getElementById(id);
-                if (!dragged) return;
+            const id = e.dataTransfer.getData('text/plain');
+            const dragged = document.getElementById(id);
+            if (!dragged) return;
 
-                const after = getDragAfterElement(zone, e.clientX);
-                if (after == null) {
-                    zone.appendChild(dragged);
-                } else {
-                    zone.insertBefore(dragged, after);
-                }
+            let axis = 'x';
+            if (zone.classList.contains('tier-dropzone')) {
+                axis = 'y';
+            }
 
-                updateCharacterDisplay();
-            });
+            const after = getDragAfterElement(zone, axis, axis === 'x' ? e.clientX : e.clientY);
+            if (after == null) {
+                zone.appendChild(dragged);
+            } else {
+                zone.insertBefore(dragged, after);
+            }
+
+            saveState();
         });
     }
 
-    enableDragAndDrop();
-    showTierList();
+    document.getElementById('tierlist-zones').addEventListener('click', e => {
+        if (!e.target.classList.contains('add-tier-btn')) return;
+
+        const btn = e.target;
+        const tierRow = btn.closest('.tier-row');
+        if (!tierRow) return;
+
+        const clone = tierRow.cloneNode(true);
+
+        const label = clone.querySelector('.tier-label');
+        const novaLabel = prompt('Nome da nova tier:', label.textContent + ' Nova');
+        if (!novaLabel) return;
+
+        label.textContent = novaLabel;
+
+        const dropzone = clone.querySelector('.tier-dropzone');
+        dropzone.innerHTML = '';
+        dropzone.dataset.tier = novaLabel.toLowerCase().replace(/\s+/g, '-');
+
+        const controls = clone.querySelector('.tier-controls');
+        controls.style.display = 'none';
+
+        clone.querySelector('.gear-btn').addEventListener('click', () => {
+            const controls = clone.querySelector('.tier-controls');
+            controls.style.display = controls.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        clone.querySelector('.delete-tier-btn').addEventListener('click', () => {
+            clone.remove();
+            saveState();
+        });
+
+        enableDropzone(dropzone);
+
+        document.getElementById('tierlist-zones').appendChild(clone);
+
+        saveState();
+    });
+
+    document.querySelectorAll('.tier-dropzone, .character-pool-tier, .character-pool-mote')
+        .forEach(enableDropzone);
+
+    loadState();
 });
+
+if (!clone.querySelector('.gear-btn')) {
+    const gearBtn = document.createElement('button');
+    gearBtn.className = 'gear-btn';
+    gearBtn.textContent = '⚙';
+    clone.appendChild(gearBtn);
+}

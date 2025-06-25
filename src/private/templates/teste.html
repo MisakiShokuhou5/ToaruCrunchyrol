@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Teste Adicionar Tier</title>
+<style>
+  #tierlist-zones {
+    padding: 10px;
+  }
+  .tier-row {
+    position: relative;
+    background: #ccc;
+    margin: 8px 0;
+    padding: 10px 50px 10px 10px;
+    border-radius: 4px;
+  }
+  .tier-label {
+    font-weight: bold;
+  }
+  .gear-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  #tier-popup-overlay {
+    display: none;
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  #tier-popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+</style>
+</head>
+<body>
+
+<div id="tierlist-zones">
+  <div class="tier-row" id="tier-s">
+    <span class="tier-label">S</span>
+    <button class="gear-btn">⚙️</button>
+    <div class="tier-dropzone"></div>
+    <div class="tier-controls" style="display:none;" data-parent-id="tier-s">
+      <label>Cor: <input type="color" class="color-picker" value="#ccc"></label>
+      <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+      <button class="delete-tier-btn">Remover esta tier</button>
+      <button class="add-tier-btn">Adicionar Tier</button>
+    </div>
+  </div>
+</div>
+
+<div id="tier-popup-overlay">
+  <div id="tier-popup-content">
+    <button id="tier-popup-close">X</button>
+  </div>
+</div>
+
+<script>
+  const tierlistZones = document.getElementById('tierlist-zones');
+  const popupOverlay = document.getElementById('tier-popup-overlay');
+  const popupContent = document.getElementById('tier-popup-content');
+  const popupCloseBtn = document.getElementById('tier-popup-close');
+
+  // Abrir popup ao clicar na engrenagem
+  tierlistZones.addEventListener('click', (e) => {
+    if(e.target.classList.contains('gear-btn')) {
+      const tierRow = e.target.closest('.tier-row');
+      const controls = tierRow.querySelector('.tier-controls');
+
+      // Move controles para popup e mostra
+      popupContent.innerHTML = '';
+      popupContent.appendChild(controls);
+      controls.style.display = 'block';
+      popupOverlay.style.display = 'flex';
+
+      // Salva o id do tier na section para retornar depois
+      controls.dataset.parentId = tierRow.id;
+    }
+  });
+
+  // Fechar popup e devolver controles
+  popupCloseBtn.addEventListener('click', () => {
+    const controls = popupContent.querySelector('.tier-controls');
+    if(controls && controls.dataset.parentId) {
+      const tierRow = document.getElementById(controls.dataset.parentId);
+      if(tierRow) {
+        tierRow.appendChild(controls);
+        controls.style.display = 'none';
+      }
+    }
+    popupOverlay.style.display = 'none';
+  });
+
+  // Delegação para botões dentro do popup (add, delete, cor, nome)
+  popupContent.addEventListener('input', (e) => {
+    if(e.target.classList.contains('color-picker')) {
+      const controls = e.target.closest('.tier-controls');
+      const tierRow = document.getElementById(controls.dataset.parentId);
+      tierRow.style.backgroundColor = e.target.value;
+    }
+    if(e.target.classList.contains('tier-name-input')) {
+      const controls = e.target.closest('.tier-controls');
+      const tierRow = document.getElementById(controls.dataset.parentId);
+      const label = tierRow.querySelector('.tier-label');
+      label.textContent = e.target.value || 'Nova';
+    }
+  });
+
+  popupContent.addEventListener('click', (e) => {
+    if(e.target.classList.contains('delete-tier-btn')) {
+      const controls = e.target.closest('.tier-controls');
+      const tierRow = document.getElementById(controls.dataset.parentId);
+      if(tierRow) tierRow.remove();
+      popupOverlay.style.display = 'none';
+    }
+    if(e.target.classList.contains('add-tier-btn')) {
+      // Cria nova tier com id único
+      const newId = 'tier-' + Math.random().toString(36).substr(2,9);
+      const newTier = document.createElement('div');
+      newTier.className = 'tier-row';
+      newTier.id = newId;
+      newTier.style.backgroundColor = '#ccc';
+
+      // Label
+      const label = document.createElement('span');
+      label.className = 'tier-label';
+      label.textContent = 'Nova';
+
+      // Botão engrenagem
+      const gearBtn = document.createElement('button');
+      gearBtn.className = 'gear-btn';
+      gearBtn.textContent = '⚙️';
+
+      // Dropzone
+      const dropzone = document.createElement('div');
+      dropzone.className = 'tier-dropzone';
+
+      // Controles (com mesmos inputs)
+      const controls = document.createElement('div');
+      controls.className = 'tier-controls';
+      controls.style.display = 'none';
+      controls.dataset.parentId = newId;
+      controls.innerHTML = `
+        <label>Cor: <input type="color" class="color-picker" value="#ccc"></label>
+        <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+        <button class="delete-tier-btn">Remover esta tier</button>
+        <button class="add-tier-btn">Adicionar Tier</button>
+      `;
+
+      // Montagem do novo tier
+      newTier.appendChild(label);
+      newTier.appendChild(gearBtn);
+      newTier.appendChild(dropzone);
+      newTier.appendChild(controls);
+
+      tierlistZones.appendChild(newTier);
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,820 @@
+{
+"Toaru Majutsu no Index Arc": {
+    "Index Arc": {
+      "Volume 1": {
+        "Capa": ["Index_v1_cover.jpg"],
+        "Capítulo 1": ["Index_v1_c1_pg1.jpg", "Index_v1_c1_pg2.jpg"],
+        "Capítulo 2": ["Index_v1_c2_pg1.jpg"],
+        "Capítulo 3":["Index_v1_c3_pg1.jpg"],
+        "Capítulo 4": ["Index_v1_c4_pg1.jpg"],
+        "Capítulo 5":["Index_v1_c5_pg1.jpg"]
+      },
+      "Volume 2": {
+        "Capa": ["Index_v2_cover.jpg"],
+        "Capítulo 6": ["Index_v2_c1_pg1.jpg"],
+        "Capítulo 7":["Index_v2_c2_pg1.jpg"],
+        "Capítulo 8":["Index_v2_c3_pg1.jpg"],
+        "Capítulo 9":["Index_v2_c4_pg1.jpg"],
+        "Capítulo 10": ["Index_v2_c5_pg1.jpg"]
+      }
+    },
+    "Sisters Arc (Index)": {
+        "Volume 3": {
+        "Capa": ["Index_v3_cover.jpg"],
+        "Capítulo 11": ["Index_v3_c1_pg1.jpg"],
+        "Capítulo 12": ["Index_v3_c2_pg1.jpg"],
+        "Capítulo 13": ["Index_v3_c3_pg1.jpg"],
+        "Capítulo 14": ["Index_v3_c4_pg1.jpg"],
+        "Capítulo 15": ["Index_v3_c5.5_pg1.jpg"]
+        },
+    
+      "Volume 4": {
+        "Capa": ["Index_v4_cover.jpg"],
+        "Capítulo 16": ["Index_v5_c1_pg1.jpg"],
+        "Capítulo 17": ["Index_v5_c2_pg1.jpg"],
+        "Capítulo 18": ["Index_v5_c3_pg1.jpg"],
+        "Capítulo 19": ["Index_v5_c4_pg1.jpg"],
+        "Capítulo 20": ["Index_v5_c5_pg1.jpg"],
+        "Capítulo 21": ["Index_v5_c6_pg1.jpg"]
+        }
+    },
+    "Three Stories Arc": {
+      "Volume 5": {
+        "Capa": ["Index_v5_cover.jpg"],
+        "Capítulo 22": ["Index_v6_c1_pg1.jpg"],
+        "Capítulo 23": ["Index_v6_c2_pg1.jpg"],
+        "Capítulo 24": ["Index_v6_c3_pg1.jpg"],
+        "Capítulo 25": ["Index_v6_c4_pg1.jpg"],
+        "Capítulo 26": ["Index_v6_c5_pg1.jpg"]
+      },
+      "Volume 6": {
+        "Capa": ["Index_v6_cover.jpg"],
+        "Capítulo 27": ["Index_v7_c1_pg1.jpg"],
+        "Capítulo 28": ["Index_v7_c2_pg1.jpg"],
+        "Capítulo 29": ["Index_v6_c1_pg1.jpg"],
+        "Capítulo 30": ["Index_v6_c2_pg1.jpg"],
+        "Capítulo 31": ["Index_v6_c3_pg1.jpg"],
+        "Capítulo 32": ["Index_v6_c4_pg1.jpg"],
+        "Capítulo 33": ["Index_v6_c5_pg1.jpg"]
+      }
+    },
+    "Kazakiri Hyouka Arc": {
+      "Volume 7": {
+        "Capa": ["Index_v7_cover.jpg"],
+        "Capítulo 34": ["Index_v7_c1_pg1.jpg"],
+        "Capítulo 35": ["Index_v7_c2_pg1.jpg"],
+        "Capítulo 36": ["Index_v7_c3_pg1.jpg"],
+        "Capítulo 37": ["Index_v7_c4_pg1.jpg"],
+        "Capítulo 38": ["Index_v7_c5_pg1.jpg"]
+      },
+      "Volume 8": {
+        "Capa": ["Index_v8_cover.jpg"],
+        "Capítulo 39":["Index_v8_c1_pg1.jpg"],
+        "Capítulo 40":["Index_v8_c2_pg1.jpg"],
+        "Capítulo 41": ["Index_v8_c3_pg1.jpg"],
+        "Capítulo 42": ["Index_v8_c4_pg1.jpg"],
+        "Capítulo 43": ["Index_v8_c5_pg1.jpg"],
+        "Capítulo 44": ["Index_v8_c6_pg1.jpg"]
+      }
+    },
+    "Orsola Acquinas Rescue Arc": {
+      "Volume 9": {
+        "Capa": ["Index_v9_cover.jpg"],
+        "Capítulo 45":["Index_v9_c1_pg1.jpg"],
+        "Capítulo 46":["Index_v9_c2_pg1.jpg"],
+        "Capítulo 47": ["Index_v9_c3_pg1.jpg"],
+        "Capítulo 48": ["Index_v9_c4_pg1.jpg"],
+        "Capítulo 49": ["Index_v9_c5_pg1.jpg"],
+        "Capítulo 50": ["Index_v9_c6_pg1.jpg"]
+      },
+      "Volume 10": {
+        "Capa": ["Index_v10_cover.jpg"],
+        "Capítulo 51":["Index_v10_c1_pg1.jpg"],
+        "Capítulo 52":["Index_v10_c2_pg1.jpg"],
+        "Capítulo 53": ["Index_v10_c3_pg1.jpg"],
+        "Capítulo 54": ["Index_v10_c4_pg1.jpg"],
+        "Capítulo 55": ["Index_v10_c5_pg1.jpg"],
+        "Capítulo 56": ["Index_v10_c6_pg1.jpg"],
+        "Capítulo 57": ["Index_v10_c7_pg1.jpg"]
+      }
+    },
+
+    "Tree Diagram Remnant Arc":{
+      "Volume 11":{
+        "Capa": ["Index_v11_cover.jpg"],
+        "Capítulo 58": ["Index_v11_c1_pg1.jpg"],
+        "Capítulo 59": ["Index_v11_c2_pg1.jpg"],
+        "Capítulo 60": ["Index_v11_c3_pg1.jpg"],
+        "Capítulo 61": ["Index_v11_c4_pg1.jpg"],
+        "Capítulo 62": ["Index_v11_c5_pg1.jpg"],
+        "Capítulo 63": ["Index_v11_c6.pg1.jpg"],
+        "Capítulo 64": ["Index_v11_c7_pg1.jpg"],
+        "Capítulo 65": ["Index_v11_c8_pg1.jpg"]
+      }
+    },
+    "Daihasei Festival Arc (Index)": {
+      "Volume 12":{
+        "Capa": ["Index_v12_cover.jpg"],
+        "Capítulo 66": ["Index_v12_c1_pg1.jpg"],
+        "Capítulo 67": ["Index_v12_c2_pg1.jpg"],
+        "Capítulo 68": ["Index_v12_c3_pg1.jpg"],
+        "Capítulo 69": ["Index_v12_c4_pg1.jpg"],
+        "Capítulo 70": ["Index_v12_c5_pg1.jpg"]
+      },
+      "Volume 13": {
+        "Capa": ["Index_v13_cover.jpg"],
+        "Capítulo 71": ["Index_v13_c1_pg1.jpg"],
+        "Capítulo 72": ["Index_v13_c2_pg1.jpg"],
+        "Capítulo 73": ["Index_v13_c3_pg1.jpg"],
+        "Capítulo 74": ["Index_v13_c4_pg1.jpg"],
+        "Capítulo 75": ["Index_v13_c5_pg1.jpg"],
+        "Capítulo 76": ["Index_v13_c6.pg1.jpg"],
+        "Capítulo 77": ["Index_v13_c7_pg1.jpg"]
+      },
+
+      "Volume 14": {
+        "Capa": ["Index_v14_cover.jpg"],
+        "Capítulo 78": ["Index_v12_c1_pg1.jpg"],
+        "Capítulo 79": ["Index_v12_c2_pg1.jpg"],
+        "Capítulo 80": ["Index_v12_c3_pg1.jpg"],
+        "Capítulo 81": ["Index_v12_c4_pg1.jpg"],
+        "Capítulo 82": ["Index_v12_c5_pg1.jpg"],
+        "Capítulo 83": ["Index_v12_c6.pg1.jpg"],
+        "Capítulo 84": ["Index_v12_c7_pg1.jpg"],
+        "Capítulo 85": ["Index_v12_c8_pg1.jpg"]
+      }
+    },
+    "La Regina Del Mar Adriatico Arc": {
+      "Volume 15": {
+        "Capa": ["Index_v15_cover.jpg"],
+        "Capítulo 86": ["Index_v15_c1_pg1.jpg"],
+        "Capítulo 87": ["Index_v15_c2_pg1.jpg"],
+        "Capítulo 88": ["Index_v15_c3_pg1.jpg"],
+        "Capítulo 89": ["Index_v15_c4_pg1.jpg"],
+        "Capítulo 90": ["Index_v15_c5.pg1.jpg"],
+        "Capítulo 91": ["Index_v15_c6_pg1.jpg"]
+      },
+
+      "Volume 16": {
+        "Capa": ["Index_v16_cover.jpg"],
+        "Capítulo 92": ["Index_v16_c1_pg1.jpg"],
+        "Capítulo 93": ["Index_v16_c2_pg1.jpg"],
+        "Capítulo 94": ["Index_v16_c3_pg1.jpg"],
+        "Capítulo 95": ["Index_v16_c4_pg1.jpg"],
+        "Capítulo 96": ["Index_v16_c5_pg1.jpg"]
+      }
+    },
+    "Academic City Invasion Arc":{
+      "Volume 16": {
+        "Capa": ["Index_v16_cover.jpg"],
+        "Capítulo 96": ["Index_v16_c5_pg1.jpg"]
+      },
+      "Volume 17": {
+        "Capa": ["Index_v17_cover.jpg"],
+        "Capítulo 97": ["Index_v17_c1_pg1.jpg"],
+        "Capítulo 98": ["Index_v17_c2_pg1.jpg"],
+        "Capítulo 99": ["Index_v17_c3_pg1.jpg"],
+        "Capítulo 100": ["Index_v17_c4_pg1.jpg"],
+        "Capítulo 101": ["Index_v17_c5_pg1.jpg"],
+        "Capítulo 102": ["Index_v17_c6_pg1.jpg"],
+        "Capítulo 103": ["Index_v17_c7_pg1.jpg"]
+      },
+      "Volume 18": {
+        "Capa": ["Index_v18_cover.jpg"],
+        "Capítulo 104": ["Index_v17_c1_pg1.jpg"],
+        "Capítulo 105": ["Index_v17_c2_pg1.jpg"],
+        "Capítulo 106": ["Index_v17_c3_pg1.jpg"],
+        "Capítulo 107": ["Index_v17_c4_pg1.jpg"],
+        "Capítulo 108": ["Index_v17_c5_pg1.jpg"],
+        "Capítulo 109": ["Index_v17_c6_pg1.jpg"],
+        "Capítulo 110": ["Index_v17_c7_pg1.jpg"]
+      },
+
+      "Volume 19": {
+        "Capa": ["Index_v19_cover.jpg"],
+        "Capítulo 111": ["Index_v17_c1_pg1.jpg"],
+        "Capítulo 112": ["Index_v17_c2_pg1.jpg"],
+        "Capítulo 113": ["Index_v17_c3_pg1.jpg"],
+        "Capítulo 114": ["Index_v17_c4_pg1.jpg"],
+        "Capítulo 115": ["Index_v17_c5_pg1.jpg"]
+     }
+    },
+
+    "Skill Out Uprising": {
+      "Volume 20": {
+        "Capa": ["Index_v20_cover.jpg"],
+        "Capítulo 116": ["Index_v20_c1_pg1.jpg"],
+        "Capítulo 117": ["Index_v20_c2_pg1.jpg"],
+        "Capítulo 118": ["Index_v20_c3_pg1.jpg"],
+        "Capítulo 120": ["Index_v20_c4_pg1.jpg"],
+        "Capítulo 121": ["Index_v20_c5_pg1.jpg"],
+        "Capítulo 122": ["Index_v20_c6_pg1.jpg"]
+      }
+    },
+    "Document of Constantine Arc": {
+      "Volume 21": {
+        "Capa": ["Index_v21_cover.jpg"],
+        "Capítulo 123": ["Index_v21_c1_pg1.jpg"],
+        "Capítulo 124": ["Index_v21_c2_pg1.jpg"],
+        "Capítulo 125": ["Index_v21_c3_pg1.jpg"],
+        "Capítulo 126": ["Index_v21_c4_pg1.jpg"],
+        "Capítulo 127": ["Index_v21_c5_pg1.jpg"],
+        "Capítulo 128": ["Index_v21_c6_pg1.jpg"]
+      },
+      "Volume 22": {
+        "Capa":["Index_v22_cover.jpg"],
+        "Capítulo 129": ["Index_v22_c1_pg1.jpg"],
+        "Capítulo 130": ["Index_v22_c2_pg1.jpg"],
+        "Capítulo 131": ["Index_v22_c3_pg1.jpg"],
+        "Capítulo 132": ["Index_v22_c4_pg1.jpg"]
+      }
+    },
+    "Battle Royale Arc": {
+      "Volume 22": {
+        "Capítulo 133": ["Index_v23_c5_pg1.jpg"],
+        "Capítulo 134": ["Index_v23_c6_pg1.jpg"],
+        "Capítulo 135": ["Index_v23_c7_pg1.jpg"]
+      },
+
+      "Volume 23": {
+        "Capa": ["Index_v24_cover.jpg"],
+        "Capítulo 136": ["Index_v24_c1_pg1.jpg"],
+        "Capítulo 137": ["Index_v24_c2_pg1.jpg"],
+        "Capítulo 138": ["Index_v24_c3_pg1.jpg"],
+        "Capítulo 139": ["Index_v24_c4_pg1.jpg"],
+        "Capítulo 140": ["Index_v24_c5_pg1.jpg"],
+        "Capítulo 141": ["Index_v24_c6_pg1.jpg"]
+      },
+
+      "Volume 24": {
+        "Capa": ["Index_v25_cover.jpg"],
+        "Capítulo 142": ["Index_v25_c1_pg1.jpg"],
+        "Capítulo 143": ["Index_v25_c2_pg1.jpg"],
+        "Capítulo 144": ["Index_v25_c3_pg1.jpg"],
+        "Capítulo 145": ["Index_v25_c4_pg1.jpg"],
+        "Capítulo 146": ["Index_v25_c5_pg1.jpg"],
+        "Capítulo 147": ["Index_v25_c6_pg1.jpg"]
+      },
+
+        "Volume 25": {
+        "Capa": ["Index_v26_cover.jpg"],
+        "Capítulo 148": ["Index_v26_c1_pg1.jpg"],
+        "Capítulo 149": ["Index_v26_c2_pg1.jpg"]
+      }
+    },
+
+    "Acqua of the Back Arc": {
+      "Volume 25": {
+        "Capa": ["Index_v26.jpg"],
+        "Capítulo 150": ["Index_v26_c3_pg1.jpg"],
+        "Capítulo 151": ["Index_v26_c4_pg1.jpg"],
+        "Capítulo 152": ["Index_v26_c5_pg1.jpg"],
+        "Capítulo 153": ["Index_v26_c6_pg1.jpg"],
+        "Capítulo 154": ["Index_v26_c7_pg1.jpg"]
+      },
+      "Volume 26": {
+        "Capa": ["Index_v27.jpg"],
+        "Capítulo 155": ["Index_v27_c1_pg1.jpg"],
+        "Capítulo 156": ["Index_v27_c2_pg1.jpg"],
+        "Capítulo 157": ["Index_v27_c3_pg1.jpg"],
+        "Capítulo 158": ["Index_v27_c4_pg1.jpg"],
+        "Capítulo 159": ["Index_v27_c5_pg1.jpg"],
+        "Capítulo 160": ["Index_v27_c6_pg1.jpg"],
+        "Capítulo 161": ["Index_v27_c7_pg1.jpg"]
+      },
+        "Volume 27": {
+        "Capa": ["Index_v27.jpg"],
+        "Capítulo 162": ["Index_v27_c1_pg1.jpg"],
+        "Capítulo 163": ["Index_v27_c2_pg1.jpg"],
+        "Capítulo 164": ["Index_v27_c3_pg1.jpg"]
+      }
+    },
+    "British Royal Family Arc": {
+      "Volume 27": {
+        "Capa": ["Index_v27.jpg"],
+        "Capítulo 165": ["Index_v27_c4_pg1.jpg"],
+        "Capítulo 166": ["Index_v27_c5_pg1.jpg"],
+        "Capítulo 167": ["Index_v27_c6_pg1.jpg"]
+      },
+
+      "Volume 28": {
+        "Capa": ["Index_v28.jpg"],
+        "Capítulo 168": ["Index_v28_c1_pg1.jpg"],
+        "Capítulo 169": ["Index_v28_c2_pg1.jpg"],
+        "Capítulo 170": ["Index_v28_c3_pg1.jpg"],
+        "Capítulo 171": ["Index_v28_c4_pg1.jpg"],
+        "Capítulo 172": ["Index_v28_c5_pg1.jpg"],
+        "Capítulo 173": ["Index_v28_c6_pg1.jpg"],
+        "Capítulo 174": ["Index_v28_c7_pg1.jpg"]
+        },
+      "Volume 29": {
+        "Capa": ["Index_v29.jpg"],
+        "Capítulo 175": ["Index_v29_c1_pg1.jpg"],
+        "Capítulo 176": ["Index_v29_c3_pg1.jpg"],
+        "Capítulo 177": ["Index_v29_c4_pg1.jpg"],
+        "Capítulo 178": ["Index_v29_c5_pg1.jpg"],
+        "Capítulo 179": ["Index_v29_c6_pg1.jpg"],
+        "Capítulo 180": ["Index_v29_c7_pg1.jpg"],
+        "Capítulo 181": ["Index_v29_c8_pg1.jpg"]
+      },
+      "Volume 30": {
+        "Capa": ["Index_v30.jpg"],
+        "Capítulo 182": ["Index_v30_c1_pg1.jpg"],
+        "Capítulo 183": ["Index_v30_c2_pg1.jpg"],
+        "Capítulo 184": ["Index_v30_c3_pg1.jpg"],
+        "Capítulo 185": ["Index_v30_c4_pg1.jpg"],
+        "Capítulo 186": ["Index_v30_c5_pg1.jpg"],
+        "Capítulo 187": ["Index_v30_c6_pg1.jpg"],
+        "Capítulo 188": ["Index_v30_c7_pg1.jpg"]
+    },
+      "Volume 31": {
+        "Capa": ["Index_v31.jpg"],
+        "Capítulo 189": ["Index_v30_c1_pg1.jpg"],
+        "Capítulo 190": ["Index_v30_c2_pg1.jpg"],
+        "Capítulo 191": ["Index_v30_c3_pg1.jpg"],
+        "Capítulo 192": ["Index_v30_c4_pg1.jpg"],
+        "Capítulo 193": ["Index_v30_c5_pg1.jpg"],
+        "Capítulo 194": ["Index_v30_c6_pg1.jpg"],
+        "Capítulo 195": ["Index_v30_c7_pg1.jpg"],
+        "Capítulo 196": ["Index_v30_c8_pg1.jpg"]
+    }
+  },
+  "DRAGON Arc": {
+        "Volume 32": {
+        "Capa": ["Index_v32.jpg"],
+        "Capítulo 197": [" Index_v30_c1_pg1.jpg"],
+        "Capítulo 198": ["Index_v30_c2_pg1.jpg"],
+        "Capítulo 199": ["Index_v30_c3_pg1.jpg"],
+        "Capítulo 200": ["Index_v30_c4_pg1.jpg"],
+        "Capítulo 201": ["Index_v30_c5_pg1.jpg"],
+        "Capítulo 202": ["Index_v30_c6_pg1.jpg"]
+    }
+   }
+ },
+
+"Toaru Kagaku no Railgun": {
+    "Level Upper Arc": {
+      "Volume 1": {
+        "Capa": ["Railgun_v1_cover.jpg"],
+        "Capítulo 1": ["Railgun_v1_c1_pg1.jpg", "Railgun_v1_c1_pg2.jpg"],
+        "Capítulo 2": ["Railgun_v1_c2_pg1.jpg"],
+        "Capítulo 3":["Railgun_v1_c3_pg1.jpg"],
+        "Capítulo 4": ["Railgun_v2_c1_pg1.jpg"],
+        "Capítulo 5":["Railgun_v2_c2_pg1.jpg"],
+        "Capítulo 6":["Railgun_v2_c3_pg1.jpg"],
+        "Capítulo 7":["Railgun_v2_c4_pg1.jpg"]
+      },
+      
+      "Volume 2": {
+        "Capa": ["Railgun_v2_cover.jpg"],
+        "Capítulo 8": ["Railgun_v2_c1_pg1.jpg"],
+        "Capítulo 9":["Railgun_v2_c2_pg1.jpg"],
+        "Capítulo 10":["Railgun_v2_c3_pg1.jpg"],
+        "Capítulo 11":["Railgun_v2_c4_pg1.jpg"],
+        "Capítulo 12": ["Railgun_v2_c5_pg1.jpg"],
+        "Capítulo 13": ["Railgun_v2_c6_pg1.jpg"]
+      },
+      "Volume 3": {
+        "Capa": ["Railgun_v3_cover.jpg"],
+        "Capítulo 14": ["Railgun_v3_c1_pg1.jpg"],
+        "Capítulo 15": ["Railgun_v3_c2_pg1.jpg"],
+        "Capítulo 16": ["Railgun_v3_c3_pg1.jpg"],
+        "Capítulo 17": ["Railgun_v3_c4_pg1.jpg"],
+        "Special": ["Railgun_v3_c5.5_pg1.jpg"]
+     }
+    },
+    "Sisters Arc (Railgun)": {
+       "Volume 4": {
+        "Capa": ["Railgun_v4_cover.jpg"],
+        "Capítulo 18": ["Railgun_v4_c1_pg1.jpg"],
+        "Capítulo 19": ["Railgun_v4_c2_pg1.jpg"],
+        "Capítulo 20": ["Railgun_v4_c3_pg1.jpg"],
+        "Capítulo 21": ["Railgun_v4_c4_pg1.jpg"],
+        "Capítulo 22": ["Railgun_v4_c5_pg1.jpg"],
+        "Capítulo 23": ["Railgun_v4_c6_pg1.jpg"]
+      },
+      "Volume 5": {
+        "Capa": ["Railgun_v5_cover.jpg"],
+        "Capítulo 24": ["Railgun_v5_c1_pg1.jpg"],
+        "Capítulo 25": ["Railgun_v5_c2_pg1.jpg"],
+        "Capítulo 26": ["Railgun_v5_c3_pg1.jpg"],
+        "Capítulo 27": ["Railgun_v5_c4_pg1.jpg"],
+        "Capítulo 28": ["Railgun_v5_c5_pg1.jpg"],
+        "Capítulo 29": ["Railgun_v5_c6_pg1.jpg"],
+        "Capítulo 30": ["Railgun_v5_c7_pg1.jpg"]
+        },
+      "Volume 6": {
+        "Capa": ["Railgun_v6_cover.jpg"],
+        "Capítulo 31": ["Railgun_v6_c1_pg1.jpg"],
+        "Capítulo 32": ["Railgun_v6_c2_pg1.jpg"],
+        "Capítulo 33": ["Railgun_v6_c3_pg1.jpg"],
+        "Capítulo 34": ["Railgun_v6_c4_pg1.jpg"],
+        "Capítulo 35": ["Railgun_v6_c5_pg1.jpg"],
+        "Capítulo 36": ["Railgun_v6_c6_pg1.jpg"],
+        "Capítulo 37": ["Railgun_v6_c7_pg1.jpg"]
+      },
+      "Volume 7": {
+        "Capa": ["Railgun_v7_cover.jpg"],
+        "Capítulo 38": ["Railgun_v7_c1_pg1.jpg"],
+        "Capítulo 39": ["Railgun_v7_c2_pg1.jpg"],
+        "Special": ["Railgun_v7_c7.5_pg1.jpg"]
+      }
+    },
+    "Daihasei Festival Arc (Railgun)": {
+      "Volume 7": {
+        "Capa": ["Railgun_v7_cover.jpg"],
+        "Capítulo 40": ["Railgun_v7_c1_pg1.jpg"],
+        "Capítulo 41": ["Railgun_v7_c2_pg1.jpg"],
+        "Capítulo 42": ["Railgun_v7_c3_pg1.jpg"],
+        "Capítulo 43": ["Railgun_v7_c4_pg1.jpg"],
+        "Capítulo 44": ["Railgun_v7_c5_pg1.jpg"]
+      },
+      "Volume 8": {
+        "Capa": ["Railgun_v8_cover.jpg"],
+        "Capítulo 45":["Railgun_v8_c1_pg1.jpg"],
+        "Capítulo 46":["Railgun_v8_c2_pg1.jpg"],
+        "Capítulo 47": ["Railgun_v8_c3_pg1.jpg"],
+        "Capítulo 48": ["Railgun_v8_c4_pg1.jpg"],
+        "Capítulo 49": ["Railgun_v8_c5_pg1.jpg"],
+        "Capítulo 50": ["Railgun_v8_c6_pg1.jpg"],
+        "Capítulo 51": ["Railgun_v8_c7_pg1.jpg"],
+        "Capítulo 52": ["Railgun_v8_c8_pg1.jpg"]
+      },
+      "Volume 9": {
+        "Capa": ["Railgun_v9_cover.jpg"],
+        "Capítulo 53":["Railgun_v9_c1_pg1.jpg"],
+        "Capítulo 54":["Railgun_v9_c2_pg1.jpg"],
+        "Capítulo 55": ["Railgun_v9_c3_pg1.jpg"],
+        "Capítulo 56": ["Railgun_v9_c4_pg1.jpg"],
+        "Capítulo 57": ["Railgun_v9_c5_pg1.jpg"],
+        "Capítulo 58": ["Railgun_v9_c6_pg1.jpg"],
+        "Capítulo 59": ["Railgun_v9_c7_pg1.jpg"],
+        "Capítulo 60": ["Railgun_v9_c8_pg1.jpg"],
+        "Capítulo 61": ["Railgun_v9_c9_pg1.jpg"]
+      },
+      "Volume 10": {
+        "Capa": ["Railgun_v10_cover.jpg"],
+        "Capítulo 62":["Railgun_v10_c1_pg1.jpg"],
+        "Capítulo 63":["Railgun_v10_c2_pg1.jpg"],
+        "Capítulo 64": ["Railgun_v10_c3_pg1.jpg"],
+        "Capítulo 65": ["Railgun_v10_c4_pg1.jpg"],
+        "Capítulo 66": ["Railgun_v10_c5_pg1.jpg"],
+        "Capítulo 67": ["Railgun_v10_c6_pg1.jpg"],
+        "Capítulo 68": ["Railgun_v10_c7_pg1.jpg"],
+        "Capítulo 69": ["Railgun_v10_c8_pg1.jpg"],
+        "Capítulo 70": ["Railgun_v10_c7_pg1.jpg"],
+        "Capítulo 71": ["Railgun_v10_c8_pg1.jpg"]
+      }
+    },
+
+    "Dream Ranker Arc":{
+      "Volume 11":{
+        "Capa": ["Railgun_v11_cover.jpg"],
+        "Capítulo 72": ["Railgun_v11_c1_pg1.jpg"],
+        "Capítulo 73": ["Railgun_v11_c2_pg1.jpg"],
+        "Capítulo 74": ["Railgun_v11_c3_pg1.jpg"],
+        "Capítulo 75": ["Railgun_v11_c4_pg1.jpg"],
+        "Capítulo 76": ["Railgun_v11_c5_pg1.jpg"],
+        "Capítulo 77": ["Railgun_v11_c6.pg1.jpg"],
+        "Capítulo 78": ["Railgun_v11_c7_pg1.jpg"],
+        "Capítulo 79": ["Railgun_v11_c8_pg1.jpg"]
+      },
+      "Volume 12":{
+        "Capa": ["Railgun_v12_cover.jpg"],
+        "Capítulo 80": ["Railgun_v12_c1_pg1.jpg"],
+        "Capítulo 81": ["Railgun_v12_c2_pg1.jpg"],
+        "Capítulo 82": ["Railgun_v12_c3_pg1.jpg"],
+        "Capítulo 83": ["Railgun_v12_c4_pg1.jpg"],
+        "Capítulo 84": ["Railgun_v12_c5_pg1.jpg"],
+        "Capítulo 85": ["Railgun_v12_c6.pg1.jpg"],
+        "Capítulo 86": ["Railgun_v12_c7_pg1.jpg"],
+        "Capítulo 87": ["Railgun_v12_c8_pg1.jpg"],
+        "Capítulo 88": ["Railgun_v12_c9_pg1.jpg"]
+      },
+      "Volume 13": {
+        "Capa": ["Railgun_v13_cover.jpg"],
+        "Capítulo 89": ["Railgun_v13_c1_pg1.jpg"],
+        "Capítulo 90": ["Railgun_v13_c2_pg1.jpg"],
+        "Capítulo 91": ["Railgun_v13_c3_pg1.jpg"],
+        "Capítulo 92": ["Railgun_v13_c4_pg1.jpg"],
+        "Capítulo 93": ["Railgun_v13_c5_pg1.jpg"],
+        "Capítulo 94": ["Railgun_v13_c6.pg1.jpg"],
+        "Capítulo 95": ["Railgun_v13_c7_pg1.jpg"],
+        "Capítulo 96": ["Railgun_v13_c8_pg1.jpg"]
+      }
+    },
+    "Jailbreaker Arc": {
+      "Volume 14": {
+        "Capa": ["Railgun_v14_cover.jpg"],
+        "Capítulo 97": ["Railgun_v12_c1_pg1.jpg"],
+        "Capítulo 98": ["Railgun_v12_c2_pg1.jpg"],
+        "Capítulo 99": ["Railgun_v12_c3_pg1.jpg"],
+        "Capítulo 100": ["Railgun_v12_c4_pg1.jpg"],
+        "Capítulo 101": ["Railgun_v12_c5_pg1.jpg"],
+        "Capítulo 102": ["Railgun_v12_c6.pg1.jpg"],
+        "Capítulo 103": ["Railgun_v12_c7_pg1.jpg"],
+        "Capítulo 104": ["Railgun_v12_c8_pg1.jpg"],
+        "Capítulo 105": ["Railgun_v12_c9_pg1.jpg"],
+        "Capítulo 106": ["Railgun_v12_c1_pg1.jpg"]
+      },
+      "Volume 15": {
+        "Capa": ["Railgun_v15_cover.jpg"],
+        "Capítulo 107": ["Railgun_v15_c1_pg1.jpg"],
+        "Capítulo 108": ["Railgun_v15_c2_pg1.jpg"],
+        "Capítulo 109": ["Railgun_v15_c3_pg1.jpg"],
+        "Capítulo 110": ["Railgun_v15_c4_pg1.jpg"],
+        "Capítulo 111": ["Railgun_v15_c5.pg1.jpg"],
+        "Capítulo 112": ["Railgun_v15_c6_pg1.jpg"],
+        "Capítulo 113": ["Railgun_v15_c7_pg1.jpg"],
+        "Capítulo 114": ["Railgun_v15_c8_pg1.jpg"],
+        "Capítulo 115": ["Railgun_v15_c9_pg1.jpg"]
+      },
+      "Volume 16": {
+        "Capa": ["Railgun_v16_cover.jpg"],
+        "Capítulo 116": ["Railgun_v16_c1_pg1.jpg"],
+        "Capítulo 117": ["Railgun_v16_c2_pg1.jpg"],
+        "Capítulo 118": ["Railgun_v16_c3_pg1.jpg"],
+        "Capítulo 119": ["Railgun_v16_c4_pg1.jpg"],
+        "Capítulo 120": ["Railgun_v16_c5.pg1.jpg"],
+        "Capítulo 121": ["Railgun_v16_c6_pg1.jpg"],
+        "Capítulo 122": ["Railgun_v16_c7_pg1.jpg"],
+        "Capítulo 123": ["Railgun_v16_c8_pg1.jpg"],
+        "Capítulo 124": ["Railgun_v16_c9_pg1.jpg"],
+        "Capítulo 125": ["Railgun_v16_c7_pg1.jpg"],
+        "Capítulo 126": ["Railgun_v16_c8_pg1.jpg"],
+        "Capítulo 127": ["Railgun_v16_c9_pg1.jpg"]
+      },
+      "Volume 17": {
+        "Capa": ["Railgun_v17_cover.jpg"],
+        "Capítulo 128": ["Railgun_v17_c1_pg1.jpg"],
+        "Capítulo 129": ["Railgun_v17_c2_pg1.jpg"],
+        "Capítulo 130": ["Railgun_v17_c3_pg1.jpg"]    
+      }
+    },
+    "First Year Arc": {
+      "Volume 17": {
+        "Capa": ["Railgun_v17_cover.jpg"],
+        "Capítulo 131": ["Railgun_v17_c4_pg1.jpg"],
+        "Capítulo 132": ["Railgun_v17_c5_pg1.jpg"],
+        "Capítulo 133": ["Railgun_v17_c6_pg1.jpg"],
+        "Capítulo 134": ["Railgun_v17_c7_pg1.jpg"],
+        "Capítulo 135": ["Railgun_v17_c8.pg1.jpg"],
+        "Capítulo 136": ["Railgun_v17_c9_pg1.jpg"]
+      },
+
+      "Volume 18": {
+        "Capa": ["Railgun_v18_cover.jpg"],
+        "Capítulo 137": ["Railgun_v18_c1_pg1.jpg"],
+        "Capítulo 138": ["Railgun_v18_c2_pg1.jpg"],
+        "Capítulo 139": ["Railgun_v18_c3_pg1.jpg"],
+        "Capítulo 140": ["Railgun_v18_c4_pg1.jpg"],
+        "Capítulo 141": ["Railgun_v18_c5_pg1.jpg"],
+        "Capítulo 142": ["Railgun_v18_c6_pg1.jpg"],
+        "Capítulo 143": ["Railgun_v18_c7_pg1.jpg"]
+      },
+      "Volume 19": {
+        "Capa": ["Railgun_v19_cover.jpg"],
+        "Capítulo 144": ["Railgun_v19_c1_pg1.jpg"],
+        "Capítulo 145": ["Railgun_v19_c2_pg1.jpg"],
+        "Capítulo 146": ["Railgun_v19_c3_pg1.jpg"],
+        "Capítulo 147": ["Railgun_v19_c4_pg1.jpg"],
+        "Capítulo 148": ["Railgun_v19_c5_pg1.jpg"],
+        "Capítulo 149": ["Railgun_v19_c6_pg1.jpg"],
+        "Capítulo 150": ["Railgun_v19_c7_pg1.jpg"],
+        "Capítulo 151": ["Railgun_v19_c6_pg1.jpg"],
+        "Capítulo 152": ["Railgun_v19_c7_pg1.jpg"]
+      },
+      "Volume 20": {
+        "Capa": ["Railgun_v20_cover.jpg"],
+        "Capítulo 153": ["Railgun_v20_c1_pg1.jpg"],
+        "Capítulo 154": ["Railgun_v20_c2_pg1.jpg"],
+        "Capítulo 155": ["Railgun_v20_c3_pg1.jpg"],
+        "Capítulo 156": ["Railgun_v20_c4_pg1.jpg"],
+        "Capítulo 157": ["Railgun_v20_c5_pg1.jpg"],
+        "Capítulo 158": ["Railgun_v20_c6_pg1.jpg"],
+        "Capítulo 159": ["Railgun_v20_c7_pg1.jpg"],
+        "Capítulo 160": ["Railgun_v20_c6_pg1.jpg"]
+      }
+    }
+  },
+
+  "Toaru Kagaku no Accelerator": {
+    "Necromancer Arc": {
+      "Volume 1": {
+        "Capa": ["Accelerator_v1_cover.jpg"],
+        "Capítulo 1": ["Accelerator_v1_c1_pg1.jpg", "Accelerator_v1_c1_pg2.jpg"],
+        "Capítulo 2": ["Accelerator_v1_c2_pg1.jpg"],
+        "Capítulo 3":["Accelerator_v1_c3_pg1.jpg"]
+      },
+      "Volume 2": {
+        "Capa": ["Accelerator_v2_cover.jpg"],
+        "Capítulo 4": ["Accelerator_v2_c1_pg1.jpg"],
+        "Capítulo 5":["Accelerator_v2_c2_pg1.jpg"],
+        "Capítulo 6":["Accelerator_v2_c3_pg1.jpg"],
+        "Capítulo 7":["Accelerator_v2_c4_pg1.jpg"],
+        "Capítulo 8": ["Accelerator_v2_c5_pg1.jpg"]
+      },
+     "Volume 3": {
+        "Capa": ["Accelerator_v3_cover.jpg"],
+        "Capítulo 9": ["Accelerator_v3_c1_pg1.jpg"],
+        "Capítulo 10": ["Accelerator_v3_c2_pg1.jpg"],
+        "Capítulo 11": ["Accelerator_v3_c3_pg1.jpg"],
+        "Capítulo 12": ["Accelerator_v3_c4_pg1.jpg"],
+        "Capítulo 13": ["Accelerator_v3_c5_pg1.jpg"]
+     },
+     "Volume 4": {
+        "Capa": ["Accelerator_v4_cover.jpg"],
+        "Capítulo 14": ["Accelerator_v4_c1_pg1.jpg"],
+        "Capítulo 15": ["Accelerator_v4_c2_pg1.jpg"],
+        "Capítulo 16": ["Accelerator_v4_c3_pg1.jpg"],
+        "Capítulo 17": ["Accelerator_v4_c4_pg1.jpg"],
+        "Capítulo 18": ["Accelerator_v4_c5_pg1.jpg"]
+     },
+     "Volume 5": {
+        "Capa": ["Accelerator_v5_cover.jpg"],
+        "Capítulo 19": ["Accelerator_v5_c1_pg1.jpg"],
+        "Capítulo 20": ["Accelerator_v5_c2_pg1.jpg"],
+        "Capítulo 21": ["Accelerator_v5_c3_pg1.jpg"],
+        "Capítulo 22": ["Accelerator_v5_c4_pg1.jpg"],
+        "Capítulo 23": ["Accelerator_v5_c5_pg1.jpg"],
+        "Capítulo 24": ["Accelerator_v5_c6_pg1.jpg"]
+     },
+     "Volume 6": {
+        "Capa": ["Accelerator_v6_cover.jpg"],
+        "Capítulo 25": ["Accelerator_v6_c1_pg1.jpg"],
+        "Capítulo 26": ["Accelerator_v6_c2_pg1.jpg"],
+        "Capítulo 27": ["Accelerator_v6_c3_pg1.jpg"],
+        "Capítulo 28": ["Accelerator_v6_c4_pg1.jpg"],
+        "Capítulo 29": ["Accelerator_v6_c5_pg1.jpg"],
+        "Capítulo 30": ["Accelerator_v6_c6_pg1.jpg"]
+     },
+          "Volume 7": {
+        "Capa": ["Accelerator_v7_cover.jpg"],
+        "Capítulo 31": ["Accelerator_v6_c1_pg1.jpg"],
+        "Capítulo 32": ["Accelerator_v6_c2_pg1.jpg"],
+        "Capítulo 33": ["Accelerator_v6_c3_pg1.jpg"],
+        "Capítulo 34": ["Accelerator_v6_c4_pg1.jpg"],
+        "Capítulo 35": ["Accelerator_v6_c5_pg1.jpg"],
+        "Capítulo 36": ["Accelerator_v6_c6_pg1.jpg"]
+     }
+     
+    },
+    "Nectar Arc": {
+      "Volume 7": {
+        "Capa": ["Accelerator_v7_cover.jpg"],
+        "Capítulo 37": ["Accelerator_v7_c1_pg1.jpg"]
+     },
+      "Volume 8": {
+        "Capa": ["Accelerator_v8_cover.jpg"],
+        "Capítulo 38": ["Accelerator_v8_c1_pg1.jpg"],
+        "Capítulo 39": ["Accelerator_v8_c2_pg1.jpg"],
+        "Capítulo 40": ["Accelerator_v8_c3_pg1.jpg"],
+        "Capítulo 41": ["Accelerator_v8_c4_pg1.jpg"],
+        "Capítulo 42": ["Accelerator_v8_c5_pg1.jpg"],
+        "Capítulo 43": ["Accelerator_v8_c6_pg1.jpg"]
+     },
+      "Volume 9": {
+        "Capa": ["Accelerator_v9_cover.jpg"],
+        "Capítulo 44": ["Accelerator_v8_c1_pg1.jpg"],
+        "Capítulo 45": ["Accelerator_v8_c2_pg1.jpg"],
+        "Capítulo 46": ["Accelerator_v8_c3_pg1.jpg"],
+        "Capítulo 47": ["Accelerator_v8_c4_pg1.jpg"],
+        "Capítulo 48": ["Accelerator_v8_c5_pg1.jpg"]
+     },
+    "Volume 10": {
+        "Capa": ["Accelerator_v10_cover.jpg"],
+        "Capítulo 49": ["Accelerator_v10_c1_pg1.jpg"],
+        "Capítulo 50": ["Accelerator_v10_c2_pg1.jpg"],
+        "Capítulo 51": ["Accelerator_v10_c3_pg1.jpg"],
+        "Capítulo 52": ["Accelerator_v10_c4_pg1.jpg"]
+     },
+      "Volume 11": {
+        "Capa": ["Accelerator_v11_cover.jpg"],
+        "Capítulo 53": ["Accelerator_v11_c1_pg1.jpg"],
+        "Capítulo 54": ["Accelerator_v11_c2_pg1.jpg"],
+        "Capítulo 55": ["Accelerator_v11_c3_pg1.jpg"],
+        "Capítulo 56": ["Accelerator_v11_c4_pg1.jpg"],
+        "Capítulo 57": ["Accelerator_v11_c5_pg1.jpg"],
+        "Capítulo 58": ["Accelerator_v11_c6_pg1.jpg"]
+     },
+      "Volume 12": {
+        "Capa": ["Accelerator_v12_cover.jpg"],
+        "Capítulo 59": ["Accelerator_v12_c1_pg1.jpg"],
+        "Capítulo 60": ["Accelerator_v12_c2_pg1.jpg"],
+        "Capítulo 61": ["Accelerator_v12_c3_pg1.jpg"],
+        "Capítulo 62": ["Accelerator_v12_c4_pg1.jpg"]
+      }
+    },
+    "Tree Diagram Remnant Arc": {
+      "Volume 12": {
+        "Capa": ["Accelerator_v12_cover.jpg"],
+        "Capítulo 63": ["Accelerator_v12_c6_pg1.jpg"]
+      }
+    }
+  },
+
+  "Toaru Kagaku no Dark Matter": {
+    "Yuzuriha Ringo Arc": {
+      "Volume 1": {
+        "Capa": ["Dark Matter_v1_cover.jpg"],
+        "Capítulo 1": ["DarkMatter_v1_c1_pg1.jpg", "DarkMatter_v1_c1_pg2.jpg"],
+        "Capítulo 2": ["Dark Matter_v1_c2_pg1.jpg"],
+        "Capítulo 3":["DarkMatter_v1_c3_pg1.jpg"],
+        "Capítulo 4": ["DarkMatter_v1_c4_pg1.jpg"]
+      }
+    }
+  },
+
+  "Toaru Kagaku no Astral Buddy": {
+    "Astral Buddy Arc": {
+      "Volume 1": {
+        "Capa": ["Astral Buddy_v1_cover.jpg"],
+        "Capítulo 1": ["AstralBuddy_v1_c1_pg1.jpg", "AstralBuddy_v1_c1_pg2.jpg"],
+        "Capítulo 2": ["AstralBuddy_v1_c2_pg1.jpg"],
+        "Capítulo 3":["AstralBuddy_v1_c3_pg1.jpg"],
+        "Capítulo 4": ["AstralBuddy_v1_c4_pg1.jpg"],
+        "Capítulo 5": ["AstralBuddy_v1_c5_pg1.jpg"]
+      },
+      "Volume 2": {
+        "Capa": ["Astral Buddy_v2_cover.jpg"],
+        "Capítulo 6": ["AstralBuddy_v2_c1_pg1.jpg", "AstralBuddy_v1_c1_pg2.jpg"],
+        "Capítulo 7": ["AstralBuddy_v2_c2_pg1.jpg"],
+        "Capítulo 8":["AstralBuddy_v2_c3_pg1.jpg"],
+        "Capítulo 9": ["AstralBuddy_v2_c4_pg1.jpg"],
+        "Capítulo 10": ["AstralBuddy_v2_c5_pg1.jpg"],
+        "Capítulo 11": ["AstralBuddy_v2_c6_pg1.jpg"],
+        "Capítulo 12": ["AstralBuddy_v2_c7_pg1.jpg"]
+     },
+     "Volume 3": {
+       "Capa": ["Astral Buddy_v3_cover.jpg"],
+       "Capítulo 13": ["AstralBuddy_v3_c1_pg1.jpg"],
+       "Capítulo 14": ["AstralBuddy_v3_c2_pg1.jpg"],
+       "Capítulo 15": ["AstralBuddy_v3_c3_pg1.jpg"],
+       "Capítulo 16": ["AstralBuddy_v3_c4_pg1.jpg"],
+       "Capítulo 17": ["AstralBuddy_v3_c5_pg1.jpg"],
+       "Capítulo 18": ["AstralBuddy_v3_c6_pg1.jpg"],
+       "Capítulo 19": ["AstralBuddy_v3_c7_pg1.jpg"]
+     },
+     "Volume 4": {
+        "Capa": ["Astral Buddy_v4_cover.jpg"],
+        "Capítulo 20": ["AstralBuddy_v4_c1_pg1.jpg"],
+        "Capítulo 21": ["AstralBuddy_v4_c2_pg1.jpg"],
+        "Capítulo 22": ["AstralBuddy_v4_c3_pg1.jpg"],
+        "Capítulo 23": ["AstralBuddy_v4_c4_pg1.jpg"],
+        "Capítulo 24": ["AstralBuddy_v4_c5_pg1.jpg"],
+        "Capítulo 25": ["AstralBuddy_v4_c6_pg1.jpg"],
+        "Capítulo 26": ["AstralBuddy_v4_c7_pg1.jpg"],
+        "Capítulo 27": ["AstralBuddy_v4_c8_pg1.jpg"],
+        "Capítulo 28": ["AstralBuddy_v4_c9_pg1.jpg"],
+        "Capítulo 29": ["AstralBuddy_v4_c10_pg1.jpg"],
+        "Capítulo 30": ["AstralBuddy_v4_c11_pg1.jpg"]
+     }
+   }
+  },
+
+  "Toaru Kagaku no Mental Out": {
+    "Tokiwadai Election Arc": {
+      "Volume 1": {
+        "Capa": ["MentalOut_v1_cover.jpg"],
+        "Capítulo 1": ["MentalOut_v1_c1_pg1.jpg"],
+        "Capítulo 2":  ["MentalOut_v1_c2_pg1.jpg"],
+        "Capítulo 3": ["MentalOut_v1_c3_pg1.jpg"],
+        "Capítulo 4": ["MentalOut_v1_c4_pg1.jpg"],
+        "Capítulo 5":["MentalOut_v1_c5_pg1.jpg"],
+        "Capítulo 6": ["MentalOut_v1_c6_pg1.jpg"]
+        },
+      "Volume 2": {
+        "Capa": ["MentalOut_v2_cover.jpg"],
+        "Capítulo 7": ["MentalOut_v2_c1_pg1.jpg"],
+        "Capítulo 8":  ["MentalOut_v2_c2_pg1.jpg"],
+        "Capítulo 9": ["MentalOut_v2_c3_pg1.jpg"],
+        "Capítulo 10": ["MentalOut_v2_c4_pg1.jpg"],
+        "Capítulo 11":["MentalOut_v2_c5_pg1.jpg"],
+        "Capítulo 12": ["MentalOut_v2_c6_pg1.jpg"],
+        "Capítulo 13": ["MentalOut_v2_c7_pg1.jpg"]
+        },
+      "Volume 3": {
+        "Capa": ["MentalOut_v2_cover.jpg"],
+        "Capítulo 14": ["MentalOut_v3_c1_pg1.jpg"],
+        "Capítulo 15":  ["MentalOut_v3_c2_pg1.jpg"],
+        "Capítulo 16": ["MentalOut_v3_c3_pg1.jpg"],
+        "Capítulo 17": ["MentalOut_v3_c4_pg1.jpg"],
+        "Capítulo 18":["MentalOut_v3_c5_pg1.jpg"],
+        "Capítulo 19": ["MentalOut_v3_c6_pg1.jpg"],
+        "Capítulo 20":["MentalOut_v3_c5_pg1.jpg"],
+        "Capítulo 21": ["MentalOut_v3_c6_pg1.jpg"]
+     },
+      "Volume 4": {
+        "Capa": ["MentalOut_v1_cover.jpg"],
+        "Capítulo 22": ["MentalOut_v4_c1_pg1.jpg"],
+        "Capítulo 23":  ["MentalOut_v4_c2_pg1.jpg"],
+        "Capítulo 24": ["MentalOut_v4_c3_pg1.jpg"],
+        "Capítulo 25": ["MentalOut_v4_c4_pg1.jpg"],
+        "Capítulo 26":["MentalOut_v4_c5_pg1.jpg"],
+        "Capítulo 27": ["MentalOut_v4_c6_pg1.jpg"],
+        "Capítulo 28":["MentalOut_v4_c7_pg1.jpg"],
+        "Capítulo 29": ["MentalOut_v4_c8_pg1.jpg"]
+      }
+    }
+  }
+}  
