@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ['tier', 'mote'].forEach(type => {
             const img = document.createElement('img');
-            img.src = `../../img/Characters/${nome}.jpg`;
+            img.src = `../img/Characters/${nome}.jpg`;
             img.className = 'character';
             img.id = `${nome}-${type}`;
             img.setAttribute('draggable', 'true');

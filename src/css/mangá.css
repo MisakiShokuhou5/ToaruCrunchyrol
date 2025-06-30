@@ -1,22 +1,75 @@
-.arc, .volume, .chapter {
-    margin: 10px 0;
-    padding: 12px;
-    background-color: var(--card-background);
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.3s;
+.card {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.3s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+
+  width: 300px;
+  box-sizing: border-box;
+  margin: 8px;
 }
 
-.arc:hover, .volume:hover, .chapter:hover {
-    background-color: var(--primary-color);
-    color: black;
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 168, 225, 0.2);
+  border-color: var(--primary-color);
+}
+
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 1rem;
+}
+
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+/* Container para alinhar volumes e capítulos lado a lado com até 3 por linha */
+.container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Limitar a largura dos cards para forçar quebra após 3 */
+.volume-card, .chapter-card {
+  flex: 1 1 calc(33.333% - 32px); /* 3 cards por linha, descontando gap */
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
 }
 
 .page-img {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    display: block;
-    border-radius: 8px;
+  width: 712px;
+}
+
+#site-view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

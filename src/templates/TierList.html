@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Toaru - Edição Definitiva</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/TierList.css">
+</head>
+
+<body>
+    <header class="top-header">
+        <div class="logo">TOARUFLIX</div>
+        <div class="header-right">
+ <div class="profile-container">
+                            <!-- aqui é pra você arrumar o header pra ficar igual ao dashboard.html -->
+                            <img class="profile-icon" id="header-profile-icon" src="">
+                            <div class="profile-dropdown" id="profile-dropdown">
+                                <a id="Anime" href="#">Anime</a>
+                                <!-- esse a é pra ir pro dahsboard.html -->
+                                <a id="Mangá" href="#">Mangá</a>
+                                <!-- esse a é pra ir pro anime.html -->
+                                <a id="Light-Novel" href="#">Light Novel</a>
+                                <!-- esse aqui é pra ir pro mangá.html -->
+                                <a id="Imaginary Fest" href="#">Imaginary Fest</a>
+                                <!-- esse aqui eu ainda vou trabalhar nele mas é pra você linkar com o ImaginaryFest.html -->
+                                <a id="Tier List" href="#">Tier List</a>
+                                <!-- esse aqui é pra TierList.html -->
+                                 <a id=Map href="#">Map</a>
+                                 <!-- esse aqui é pra Map.html -->
+                                <a id="manage-profiles-link" href="#">Gerenciar Perfis</a>
+                                <a id="account-link" href="#">Conta</a>
+                                <a id="logout-button" href="#">Sair</a>
+                                <!-- e no final copiar e colar esse header nas outras páginas pra ficar certinho. Eu vou criar o header.js pra você colocar todos esses scripts em um js e só linkar com as páginas -->
+        </div>
+    </header>
+
+    <div class="tierlist-header">
+        <div class="left-buttons">
+            <button id="btn-tierlist" class="active">Tier List</button>
+            <button id="btn-motelist">Motelist</button>
+        </div>
+
+        <div class="right-controls">
+            <span id="arc-info-btn">i</span>
+            <label class="spoiler-toggle">
+                <input type="checkbox" id="show-spoilers" />
+                spoiler
+            </label>
+        </div>
+    </div>
+
+    <section id="arc-manager" style="display: none;">
+        <h3>Organize seus arcos</h3>
+        <div class="arc-column">
+            <h4>Visto</h4>
+            <ul id="arcs-seen"></ul>
+        </div>
+        <div class="arc-column">
+            <h4>Não Visto</h4>
+            <ul id="arcs-unseen"></ul>
+        </div>
+        <div class="arc-column">
+            <h4>Incompleto</h4>
+            <ul id="arcs-incomplete"></ul>
+        </div>
+    </section>
+
+    <div id="tierlist-container">
+        <div id="tierlist-zones">
+
+            <div class="tier-row tier-s">
+                <span class="tier-label">S</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="S"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row tier-a">
+                <span class="tier-label">A</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="A"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row tier-b">
+                <span class="tier-label">B</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="B"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row tier-c">
+                <span class="tier-label">C</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="C"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row tier-d">
+                <span class="tier-label">D</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="D"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row tier-e">
+                <span class="tier-label">E</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="E"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row tier-mystery">
+                <span class="tier-label">?</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-tier="?"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+        </div>
+
+        <h3>Personagens Disponíveis:</h3>
+        <div id="character-pool-tier" class="character-pool"></div>
+    </div>
+
+    <div id="motelist-container">
+        <div id="motelist-zones">
+            <div class="tier-row grau-especial">
+                <span class="tier-label">Grau Especial</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-grade="grau-especial"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row grau-1">
+                <span class="tier-label">Grau 1</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-grade="grau-1"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row grau-2">
+                <span class="tier-label">Grau 2</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-grade="grau-2"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row grau-3">
+                <span class="tier-label">Grau 3</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-grade="grau-3"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row grau-4">
+                <span class="tier-label">Grau 4</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-grade="grau-4"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+
+            <div class="tier-row grau-5">
+                <span class="tier-label">Grau 5</span>
+                <button class="gear-btn">⚙️</button>
+                <div class="tier-dropzone" data-grade="grau-5"></div>
+                <div class="tier-controls" style="display: none;">
+                    <label>Cor: <input type="color" class="color-picker" value="#cccccc"></label>
+                    <label>Nome: <input type="text" class="tier-name-input" placeholder="Renomear tier"></label>
+                    <button class="delete-tier-btn">Remover esta tier</button>
+                    <button class="add-tier-btn">Adicionar Tier</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="gender-filters" style="display:none;">
+            <button id="filter-male" class="btn-gender btn-male" title="Masculino">&#9794;</button>
+            <button id="filter-female" class="btn-gender btn-female" title="Feminino">&#9792;</button>
+        </div>
+
+        <h3>Personagens Disponíveis:</h3>
+        <div id="character-pool-mote" class="character-pool"></div>
+    </div>
+
+    <button id="save-image-btn">Salvar</button>
+
+
+    <section id="image-save-popup"
+        style="display:none; position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000;">
+        <div
+            style="background:#222; padding:20px; border-radius:8px; max-width: 90vw; max-height: 90vh; display:flex; flex-direction: column; align-items: center; gap: 12px; position: relative;">
+            <button id="close-image-save"
+                style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; color: #eee; cursor: pointer;">×</button>
+            <img id="image-preview" src="" alt="Preview da imagem"
+                style="max-width: 80vw; max-height: 70vh; border-radius: 6px;" />
+            <a id="download-image-btn" href="#" download="tierlist.png"
+                style="padding: 10px 20px; background: #4CAF50; color: white; border-radius: 5px; text-decoration: none; font-weight: bold;">Download</a>
+        </div>
+    </section>
+
+
+    <div id="tier-popup-overlay" style="display:none;">
+        <div id="tier-popup">
+            <button id="tier-popup-close">X</button>
+            <div id="tier-popup-content"></div>
+        </div>
+    </div>
+
+
+    <script src="../../js/Characters.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/TierList.js"></script>
+    <script src="../../js/Controls.js"></script>
+    <script src="../../js/Download.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</body>
+
+</html>
