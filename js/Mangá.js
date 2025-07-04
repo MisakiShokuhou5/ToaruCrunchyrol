@@ -134,7 +134,7 @@ if (!window.location.search) {
       const volDiv = document.createElement('div');
       volDiv.classList.add('card', 'volume-card');
       volDiv.innerHTML = `
-        <img src="src/img/Manga/${cover}" alt="Capa do volume">
+        <img src="../src/img/Manga/${cover}" alt="Capa do volume">
         <span>${volumeName}</span>
       `;
 

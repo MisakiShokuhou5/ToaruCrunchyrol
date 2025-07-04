@@ -1,0 +1,119 @@
+.ln-card {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: #1A1C32;
+  font-family: 'Inter', sans-serif;
+}
+
+.ln-card img.ln-cover {
+  width: 120px;
+  height: auto;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.ln-card a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.ln-card a:hover {
+  color: #339CFF;
+}
+
+h3 {
+  margin-top: 32px;
+  font-size: 1.5rem;
+  color: #004080;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 4px;
+}
+
+h4 {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #0066cc;
+}
+
+/* Container geral */
+#site-view {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color, #222);
+}
+
+/* Títulos */
+#site-view h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Grades de cards */
+.series-grid,
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Cards básicos (séries, sagas, arcos) */
+.series-card,
+.card {
+  background-color: #1A1C32;
+  border-radius: 6px;
+  padding: 16px 24px;
+  min-width: 180px;
+  max-width: 220px;
+  box-shadow: 0 2px 6px rgb(0 123 255 / 0.3);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s;
+  user-select: none;
+}
+
+.series-card:hover,
+.card:hover,
+.volume-card:hover,
+.chapter-card:hover {
+  border: solid 2px #339cff;
+}
+
+
+/* Cards de volumes com imagem */
+.volume-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+}
+
+/* Texto dos cards */
+.series-card span,
+.card span {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #004a99;
+}
+
+/* Link do PDF */
+#site-view a {
+  font-weight: 700;
+  color: #007BFF;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+  transition: color 0.3s;
+}
+
+#site-view a:hover {
+  color: #339CFF;
+  text-decoration: underline;
+}
