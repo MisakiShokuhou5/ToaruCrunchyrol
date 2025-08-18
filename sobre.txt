@@ -1,0 +1,194 @@
+   Visão Geral do Projeto: ToaruFlix
+Descrição do Projeto
+ToaruFlix é uma aplicação web moderna, concebida como um clone da Netflix, dedicada exclusivamente ao universo de animes "Toaru" (A Certain Magical Index, A Certain Scientific Railgun, etc.). O objetivo é oferecer aos fãs uma experiência de streaming imersiva e personalizada, permitindo que naveguem, assistam e acompanhem seu progresso na franquia.
+
+A aplicação utiliza tecnologias de ponta, incluindo React para a construção da interface de usuário dinâmica e reativa, e Firebase como backend completo, gerenciando a autenticação de usuários, o armazenamento de dados no Firestore (perfis, histórico de visualização) e a segurança de acesso.
+
+Funcionalidades Principais:
+Autenticação Segura: Sistema de login e cadastro com E-mail/Senha e Google, gerenciado pelo Firebase Auth.
+
+Perfis de Usuário: Suporte para múltiplos perfis por conta, similar à Netflix, permitindo uma experiência individualizada.
+
+Dashboard Dinâmica: Exibição dos animes em fileiras (rows) por categoria e uma seção "Continuar Assistindo" que salva o progresso do usuário.
+
+Player de Vídeo Integrado: Um player de vídeo funcional que salva automaticamente o progresso do episódio no Firestore.
+
+Roteamento Protegido: Acesso ao conteúdo principal restrito apenas a usuários autenticados e com perfil selecionado.
+
+Estrutura de Arquivos e Funções
+A tabela abaixo detalha a responsabilidade de cada arquivo e pasta no projeto.
+
+Arquivo / Pasta
+
+Função
+
+Descrição
+
+📂 src
+
+Código-Fonte
+
+Pasta principal que contém todo o código da aplicação React.
+
+📂 api
+
+Comunicação Externa
+
+Centraliza a lógica para buscar dados de fontes externas (APIs).
+
+📄 api/animes.js
+
+Busca de Animes
+
+Contém as funções fetch para buscar a lista geral de animes e as listas de episódios dos seus arquivos JSON hospedados.
+
+📂 components
+
+Componentes Reutilizáveis
+
+Contém os blocos de construção da interface, organizados por contexto.
+
+📄 components/Header.jsx
+
+Cabeçalho
+
+O cabeçalho de navegação que aparece no topo das páginas principais.
+
+📄 components/Footer.jsx
+
+Rodapé
+
+O rodapé que aparece no final das páginas.
+
+📂 components/Browse
+
+Componentes da Dashboard
+
+Componentes específicos para a tela principal de navegação (/browse).
+
+📄 Browse/Hero.jsx
+
+Banner Principal
+
+Exibe o anime em destaque na dashboard, com imagem de fundo e logo.
+
+📄 Browse/AnimeRow.jsx
+
+Fileira de Animes
+
+Componente que cria uma fileira horizontal de animes (ex: "Em Alta", "Ação").
+
+📄 Browse/AnimeCard.jsx
+
+Card de Anime
+
+O card individual de um anime que aparece nas fileiras.
+
+📂 components/shared
+
+Componentes Genéricos
+
+Componentes que podem ser usados em qualquer lugar da aplicação.
+
+📄 shared/Spinner.jsx
+
+Indicador de Carregamento
+
+Animação exibida enquanto os dados estão sendo carregados.
+
+📄 shared/Logo.jsx
+
+Logo da Aplicação
+
+O logo "ToaruFlix" que também funciona como um link para a home.
+
+📂 contexts
+
+Estado Global
+
+Gerencia o estado que precisa ser compartilhado entre múltiplos componentes.
+
+📄 contexts/AuthContext.jsx
+
+Contexto de Autenticação
+
+Fornece informações sobre o usuário logado (quem é, se está carregando, qual perfil foi selecionado) para toda a aplicação.
+
+📂 firebase
+
+Configuração do Firebase
+
+Arquivos relacionados à inicialização e configuração do Firebase.
+
+📄 firebase/config.js
+
+Inicialização do Firebase
+
+Inicializa e exporta as instâncias do Firebase Auth e Firestore usando as chaves do arquivo .env.local.
+
+📂 hooks
+
+Hooks Personalizados
+
+Funções reutilizáveis que encapsulam lógicas complexas (geralmente com estado).
+
+📄 hooks/useAuth.js
+
+Hook de Autenticação
+
+Um atalho para acessar facilmente os dados do AuthContext em qualquer componente.
+
+📂 pages
+
+Páginas da Aplicação
+
+Componentes que representam as telas completas da aplicação (ex: uma rota).
+
+📄 pages/Login.jsx
+
+Página de Login
+
+Tela onde o usuário pode entrar ou se cadastrar.
+
+📄 pages/Profiles.jsx
+
+Página de Perfis
+
+Tela "Quem está assistindo?", onde o usuário escolhe seu perfil.
+
+📄 pages/Browse.jsx
+
+Página de Navegação
+
+A dashboard principal, que exibe o Hero e as AnimeRow.
+
+📄 pages/Player.jsx
+
+Página do Player
+
+Tela que contém o player de vídeo para assistir aos episódios.
+
+📄 App.js
+
+Roteador Principal
+
+Define todas as rotas da aplicação (/login, /browse, etc.) e implementa a lógica de rotas protegidas.
+
+📄 index.js
+
+Ponto de Entrada
+
+O primeiro arquivo a ser executado. Ele renderiza o componente App na página HTML.
+
+📄 .env.local
+
+Variáveis de Ambiente
+
+Arquivo secreto (não deve ir para o GitHub) que armazena suas chaves de API do Firebase de forma segura.
+
+📄 package.json
+
+Manifesto do Projeto
+
+Lista todas as dependências do projeto (React, Firebase, etc.) e os scripts (como npm start).
+

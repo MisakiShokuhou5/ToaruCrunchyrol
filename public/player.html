@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToaruFlix - Player Premium Demo</title>
+    <!-- Importando Font Awesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- Reset e Estilos Globais --- */
+        :root {
+            --primary-color: #8a2be2; /* BlueViolet */
+            --text-color: #fff;
+            --text-secondary-color: #ccc;
+            --background-dark: #141414;
+            --background-panel: rgba(20, 20, 20, 0.9);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        /* --- Container Principal --- */
+        .player-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* --- Overlay e Controles --- */
+        .controls-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.8) 100%);
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            z-index: 10;
+        }
+
+        .controls-overlay.hidden {
+            opacity: 0;
+            cursor: none;
+        }
+
+        /* --- Controles Superiores --- */
+        .top-controls {
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .back-button {
+            font-size: 2.5rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            text-shadow: 1px 1px 3px #000;
+        }
+        
+        .episode-info {
+            color: var(--text-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            text-align: right;
+            max-width: 50%;
+        }
+
+        .episode-info h1 { font-size: 2.2rem; margin: 0; }
+        .episode-info p { font-size: 1.1rem; color: var(--text-secondary-color); margin-top: 0.5rem; }
+
+        /* --- Controles Inferiores --- */
+        .bottom-controls {
+            padding: 1rem 3rem 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            transition: height 0.2s ease;
+        }
+        .progress-bar-container:hover { height: 8px; }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .main-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .left-controls, .center-controls, .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .center-controls { flex-grow: 1; justify-content: center; }
+
+        .control-button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.7rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .volume-container { display: flex; align-items: center; gap: 0.5rem; }
+        #volume-slider {
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+            transition: opacity 0.2s;
+        }
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--text-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .time-display { color: var(--text-secondary-color); font-size: 1rem; }
+
+        /* --- Painel de Lista de Episódios --- */
+        .episode-list-panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background: var(--background-panel);
+            backdrop-filter: blur(10px);
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+        }
+        .episode-list-panel.open { transform: translateX(0); }
+        
+        .panel-header {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* NOVO: Botão de fechar o painel */
+        .panel-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary-color);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .panel-close-btn:hover { color: var(--text-color); }
+
+        .panel-content {
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .panel-content::-webkit-scrollbar { width: 5px; }
+        .panel-content::-webkit-scrollbar-track { background: transparent; }
+        .panel-content::-webkit-scrollbar-thumb { background: #555; border-radius: 5px; }
+
+        .episode-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background-color 0.2s;
+        }
+        .episode-item:hover { background-color: rgba(255,255,255,0.05); }
+        .episode-item.active {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+        .episode-item.active .ep-desc { color: var(--text-color); }
+        .ep-title { font-weight: bold; margin-bottom: 0.3rem; }
+        .ep-desc { font-size: 0.9rem; color: var(--text-secondary-color); }
+
+    </style>
+</head>
+<body>
+
+    <div class="player-container" id="player-container">
+        <video id="video-player"></video>
+
+        <div class="controls-overlay" id="controls-overlay">
+            <div class="top-controls">
+                <button class="back-button" title="Voltar">&larr;</button>
+                <div class="episode-info">
+                    <h1 id="episode-title"></h1>
+                    <p id="episode-description"></p>
+                </div>
+            </div>
+
+            <div class="bottom-controls">
+                <div class="progress-bar-container" id="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+
+                <div class="main-controls">
+                    <div class="left-controls">
+                        <button class="control-button" id="play-pause-btn" title="Play/Pause"><i class="fas fa-play"></i></button>
+                        <div class="volume-container">
+                            <button class="control-button" id="volume-btn" title="Volume"><i class="fas fa-volume-high"></i></button>
+                            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                        </div>
+                    </div>
+                    <div class="center-controls">
+                        <button class="control-button" id="prev-btn" title="Episódio Anterior"><i class="fas fa-backward-step"></i></button>
+                        <button class="control-button" id="next-btn" title="Próximo Episódio"><i class="fas fa-forward-step"></i></button>
+                    </div>
+                    <div class="right-controls">
+                        <div class="time-display">
+                            <span id="current-time">00:00</span> / <span id="total-time">00:00</span>
+                        </div>
+                        <button class="control-button" id="playlist-btn" title="Lista de Episódios"><i class="fas fa-bars"></i></button>
+                        <button class="control-button" id="fullscreen-btn" title="Tela Cheia"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="episode-list-panel" id="episode-list-panel">
+            <div class="panel-header">
+                <span>Episódios</span>
+                <button class="panel-close-btn" id="panel-close-btn">&times;</button>
+            </div>
+            <div class="panel-content" id="panel-content">
+                <!-- Episódios serão inseridos aqui pelo JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const episodeList = [
+            { episodio: 1, titulo: "Accelerator, o esper mais poderoso", descricao: "Accelerator ainda se recupera de ferimentos...", link_video: "https://p1.animescomix.com/stream/animes/t/toaru-kagaku-no-accelerator/01.mp4" },
+            { episodio: 2, titulo: "Necromancer", descricao: "Um grupo da Anti-Skill persegue uma pessoa...", link_video: "https://p1.animescomix.com/stream/animes/t/toaru-kagaku-no-accelerator/02.mp4" },
+            { episodio: 3, titulo: "Numbers", descricao: "Esther leva Accelerator até o local...", link_video: "https://p1.animescomix.com/stream/animes/t/toaru-kagaku-no-accelerator/03.mp4" },
+            { episodio: 4, titulo: "Third Number", descricao: "Uma nova aliada aparece para combater a DA...", link_video: "https://p1.animescomix.com/stream/animes/t/toaru-kagaku-no-accelerator/04.mp4" },
+            { episodio: 5, titulo: "DA - Sombras da Anti-Skill", descricao: "Os integrantes do grupo DA estão ficando sem saída...", link_video: "https://p1.animescomix.com/stream/animes/t/toaru-kagaku-no-accelerator/05.mp4" },
+            { episodio: 6, titulo: "Scavengers", descricao: "O grupo de assassinas chamado Scavengers aparece...", link_video: "https://p1.animescomix.com/stream/animes/t/toaru-kagaku-no-accelerator/06.mp4" },
+        ];
+        let currentEpisodeIndex = 0;
+        
+        // --- Seleção dos Elementos do DOM ---
+        const playerContainer = document.getElementById('player-container');
+        const video = document.getElementById('video-player');
+        const controlsOverlay = document.getElementById('controls-overlay');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playPauseIcon = playPauseBtn.querySelector('i');
+        const progressBarContainer = document.getElementById('progress-bar-container');
+        const progressBar = document.getElementById('progress-bar');
+        const volumeBtn = document.getElementById('volume-btn');
+        const volumeIcon = volumeBtn.querySelector('i');
+        const volumeSlider = document.getElementById('volume-slider');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalTimeEl = document.getElementById('total-time');
+        const episodeTitleEl = document.getElementById('episode-title');
+        const episodeDescriptionEl = document.getElementById('episode-description');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const playlistBtn = document.getElementById('playlist-btn');
+        const episodeListPanel = document.getElementById('episode-list-panel');
+        const panelContent = document.getElementById('panel-content');
+        const panelCloseBtn = document.getElementById('panel-close-btn');
+
+        let controlsTimeout;
+
+        // --- Funções do Player ---
+
+        function populateEpisodeList() {
+            panelContent.innerHTML = '';
+            episodeList.forEach((ep, index) => {
+                const item = document.createElement('div');
+                item.className = 'episode-item';
+                item.dataset.index = index;
+                item.innerHTML = `
+                    <div class="ep-title">Ep ${ep.episodio}: ${ep.titulo}</div>
+                    <div class="ep-desc">${ep.descricao}</div>
+                `;
+                item.addEventListener('click', () => loadEpisode(index));
+                panelContent.appendChild(item);
+            });
+        }
+
+        function updateActiveEpisodeInList() {
+            document.querySelectorAll('.episode-item').forEach(item => {
+                item.classList.remove('active');
+                if (parseInt(item.dataset.index) === currentEpisodeIndex) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        function loadEpisode(index) {
+            const episode = episodeList[index];
+            video.src = episode.link_video;
+            episodeTitleEl.textContent = `Ep ${episode.episodio}: ${episode.titulo}`;
+            episodeDescriptionEl.textContent = episode.descricao;
+            currentEpisodeIndex = index;
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === episodeList.length - 1;
+            
+            updateActiveEpisodeInList();
+            video.play();
+        }
+
+        function togglePlay() {
+            video.paused ? video.play() : video.pause();
+        }
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function updateProgress() {
+            progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+            currentTimeEl.textContent = formatTime(video.currentTime);
+        }
+
+        function setProgress(e) {
+            video.currentTime = (e.offsetX / progressBarContainer.offsetWidth) * video.duration;
+        }
+
+        function setVolume() {
+            video.volume = volumeSlider.value;
+            updateVolumeIcon();
+        }
+        
+        function updateVolumeIcon() {
+            volumeIcon.className = 'fas'; // Reset
+            if (video.volume > 0.5) volumeIcon.classList.add('fa-volume-high');
+            else if (video.volume > 0) volumeIcon.classList.add('fa-volume-low');
+            else volumeIcon.classList.add('fa-volume-xmark');
+        }
+
+        function toggleMute() {
+            if (video.volume > 0) {
+                video.dataset.lastVolume = video.volume;
+                video.volume = 0;
+                volumeSlider.value = 0;
+            } else {
+                video.volume = video.dataset.lastVolume || 1;
+                volumeSlider.value = video.dataset.lastVolume || 1;
+            }
+            updateVolumeIcon();
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) playerContainer.requestFullscreen().catch(err => alert(err.message));
+            else document.exitFullscreen();
+        }
+
+        function hideControls() {
+            if (controlsTimeout) clearTimeout(controlsTimeout);
+            controlsTimeout = setTimeout(() => {
+                if (!video.paused && !episodeListPanel.classList.contains('open')) {
+                    controlsOverlay.classList.add('hidden');
+                }
+            }, 3000);
+        }
+
+        function showControls() {
+            controlsOverlay.classList.remove('hidden');
+            hideControls();
+        }
+
+        // --- Adicionando Event Listeners ---
+        playPauseBtn.addEventListener('click', togglePlay);
+        video.addEventListener('click', togglePlay);
+        video.addEventListener('timeupdate', updateProgress);
+        video.addEventListener('play', () => playPauseIcon.classList.replace('fa-play', 'fa-pause'));
+        video.addEventListener('pause', () => playPauseIcon.classList.replace('fa-pause', 'fa-play'));
+        video.addEventListener('ended', () => { if (currentEpisodeIndex < episodeList.length - 1) loadEpisode(currentEpisodeIndex + 1); });
+        video.addEventListener('loadedmetadata', () => totalTimeEl.textContent = formatTime(video.duration));
+        progressBarContainer.addEventListener('click', setProgress);
+        volumeBtn.addEventListener('click', toggleMute);
+        volumeSlider.addEventListener('input', setVolume);
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        prevBtn.addEventListener('click', () => { if (currentEpisodeIndex > 0) loadEpisode(currentEpisodeIndex - 1); });
+        nextBtn.addEventListener('click', () => { if (currentEpisodeIndex < episodeList.length - 1) loadEpisode(currentEpisodeIndex + 1); });
+        playerContainer.addEventListener('mousemove', showControls);
+        playerContainer.addEventListener('mouseleave', () => { if (!video.paused) controlsOverlay.classList.add('hidden'); });
+        
+        playlistBtn.addEventListener('click', () => {
+            episodeListPanel.classList.add('open');
+            showControls();
+        });
+        
+        panelCloseBtn.addEventListener('click', () => {
+            episodeListPanel.classList.remove('open');
+        });
+
+        // --- Inicialização ---
+        populateEpisodeList();
+        loadEpisode(0);
+        hideControls();
+
+    </script>
+</body>
+</html>

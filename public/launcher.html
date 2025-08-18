@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lançador ToaruFlix</title>
+    <style>
+        body { font-family: sans-serif; background-color: #141414; color: white; padding: 40px; }
+        a { color: #8a2be2; font-size: 24px; display: block; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Selecione um Anime para Assistir</h1>
+    <a id="accelerator-link" href="#">A Certain Scientific Accelerator</a>
+    <a id="index-link" href="#">A Certain Magical Index</a>
+
+    <script>
+        // URLs dos seus arquivos JSON
+        const acceleratorJsonUrl = 'https://a-certain-digital-database.netlify.app/src/json/toaru-kagaku-no-accelerator.json';
+        const indexJsonUrl = 'https://a-certain-digital-database.netlify.app/src/json/toaru-majutsu-no-index.json';
+
+        // Codifica as URLs em Base64
+        const encodedAcceleratorUrl = btoa(acceleratorJsonUrl);
+        const encodedIndexUrl = btoa(indexJsonUrl);
+
+        // Define os links na página
+        // Assumindo que o player se chama 'player.html'
+        document.getElementById('accelerator-link').href = `player.html?data=${encodedAcceleratorUrl}`;
+        document.getElementById('index-link').href = `player.html?data=${encodedIndexUrl}`;
+    </script>
+</body>
+</html>
