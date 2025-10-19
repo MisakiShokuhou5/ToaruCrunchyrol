@@ -51,7 +51,8 @@ const HeroContainer = styled.section`
     bottom: 0;
     width: 100%;
     height: 10rem;
-    background: linear-gradient(to top, rgba(20, 20, 20, 1) 20%, transparent 100%);
+    background: #000000;
+background: linear-gradient(1deg, rgba(0, 0, 0, 0.94) 11%, rgba(255, 255, 255, 0) 60%);
   }
 `;
 

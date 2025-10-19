@@ -11,12 +11,13 @@ import { FaPen, FaPlus, FaTrash } from 'react-icons/fa';
 
 // --- Avatares pré-definidos ---
 const avatarOptions = [
-    'https://placehold.co/200x200/8a2be2/ffffff?text=P1',
-    'https://placehold.co/200x200/32cd32/ffffff?text=P2',
-    'https://placehold.co/200x200/ff4500/ffffff?text=P3',
-    'https://placehold.co/200x200/1e90ff/ffffff?text=P4',
-    'https://placehold.co/200x200/ff69b4/ffffff?text=P5',
-    'https://placehold.co/200x200/ffd700/000000?text=P6',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/Accelerator.png?raw=true',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/kakine.png?raw=true',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/mikoto.png?raw=true',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/mugino.png?raw=true',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/misaki.png?raw=true',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/Junko.png?raw=true',
+    'https://github.com/MisakiShokuhou5/A-certain-Digital-Database/blob/main/src/profile/index.png?raw=true',
 ];
 
 // --- Animações ---
@@ -177,6 +178,7 @@ const AvatarGrid = styled.div`
 `;
 const AvatarOption = styled.img`
   width: 100%;
+  height: 100%;
   border-radius: 4px;
   cursor: pointer;
   border: 3px solid ${props => props.isSelected ? '#8a2be2' : 'transparent'};
